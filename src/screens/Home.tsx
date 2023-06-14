@@ -3,14 +3,16 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <Button title="Go Settings" onPress={() => navigation.navigate('settings')} />
-    </View>
+      <View style={styles.container}>
+        <Text>Home</Text>
+        <Button
+          title="Go Settings"
+          onPress={() => navigation.navigate("settings")}
+        />
+      </View>
   );
 };
 
