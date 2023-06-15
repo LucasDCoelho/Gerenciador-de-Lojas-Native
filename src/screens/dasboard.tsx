@@ -1,23 +1,12 @@
 import "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const Dasboard = () => {
   return (
-    <>
-      <View style={styles.container}>
-        <Text>Dasboard</Text>
-      </View>
-    </>
+    <View className="flex-1 justify-center items-center">
+      <Text className="text-4xl text-black font-bold">Dasboard</Text>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default Dasboard;

@@ -4,6 +4,9 @@ export declare global {
             home: undefined;
             dashboard: undefined;
             settings: undefined;
+            login: undefined;
+            lojas: undefined;
+            notFound: undefined;
         }
     }
 }

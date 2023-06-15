@@ -1,25 +1,42 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "@expo/vector-icons/FontAwesome";
 
-import Settings from "../../screens/settings";
-import Home from "../../screens/home";
+import Home from "../../screens/home/home";
+import Settings from "../../screens/home/settings";
+import Meeting from "../../screens/home/meeting";
 
 export const TabNavigate = () => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="User"
+        name="Reuniões"
+        component={Meeting}
+        options={{
+          tabBarLabel: "Reuniões",
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="users" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <Icon name="user" size={23} />,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="home" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: () => <Icon name="gear" size={23} />,
+          tabBarLabel: "Ajustes",
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="gear" size={size} color={color} />
+          ),
         }}
       />
     </Tab.Navigator>

@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
 
-const Settings = () =>{
+const Shops = () =>{
   return (
       <View style={styles.container}>
-        <Text>Settings</Text>
+        <Text>Shops</Text>
       </View>
   );
 }
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings
+export default Shops

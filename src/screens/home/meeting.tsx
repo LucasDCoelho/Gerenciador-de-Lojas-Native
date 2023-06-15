@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
 
-const Home = () =>{
+const Meeting = () =>{
   return (
       <View style={styles.container}>
-        <Text>Home</Text>
+        <Text>Meeting</Text>
       </View>
   );
 }
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home
+export default Meeting
