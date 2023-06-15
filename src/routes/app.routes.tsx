@@ -1,16 +1,17 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "../screens/Home";
-import Settings from "../screens/Settings";
+import Login from "../screens/login";
+import { DrawerNavigate } from "../components/Drawer";
 
 export const Routes = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="home"
+      initialRouteName="login"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen component={Settings} name="Home" />
+      <Stack.Screen component={Login} name="login"/>
+      <Stack.Screen component={DrawerNavigate} name="home" />
     </Stack.Navigator>
   );
 };

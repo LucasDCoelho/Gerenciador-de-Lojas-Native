@@ -1,13 +1,15 @@
 import "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
 
-const Profile = () =>{
+const Dasboard = () => {
   return (
+    <>
       <View style={styles.container}>
-        <Text>Profile</Text>
+        <Text>Dasboard</Text>
       </View>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile
+export default Dasboard;

@@ -1,20 +1,13 @@
 import "react-native-gesture-handler";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, Text, View } from "react-native";
 
-const Home = () => {
-  const navigation = useNavigation();
-
+const Home = () =>{
   return (
       <View style={styles.container}>
         <Text>Home</Text>
-        <Button
-          title="Go Settings"
-          onPress={() => navigation.navigate("settings")}
-        />
       </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -25,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Home
