@@ -1,49 +1,52 @@
 import React from "react";
-import "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
-import { Button } from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../routes/app.routes";
+import { Input } from "../components/input";
+import { Button } from "../components/button";
 
 const Login = () => {
-  
   const { navigate } = useNavigation();
   const { signedIn, setSignedIn } = React.useContext(AuthContext);
-  
-  const ValidationAuth =()=>{
-    setSignedIn(true)
-  }
 
-  React.useEffect(()=>{
-    if(!signedIn){
-      return  
-    }else{
-      navigate("home")
+  const ValidationAuth = () => {
+    setSignedIn(true);
+  };
+
+  React.useEffect(() => {
+    if (!signedIn) {
+      return;
+    } else {
+      navigate("home");
     }
-  },[signedIn])
+  }, [signedIn]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.h1}>Login</Text>
-      <Button Label="Entrar" onPress={ValidationAuth} />
+    <View className="flex-1 p-8 justify-center items-center bg-black">
+      <View className="w-full justify-between p-4 m-4 rounded-md border-2 border-rose-800  items-center bg-white">
+        <Image source={require('../../assets/favicon.png')} className="w-32 h-32 m-4" resizeMode="cover"/>
+        <Text className="text-2xl my-4 font-bold">Login</Text>
+        <View>
+          <Input
+            label="Email"
+            inputIcon="user-alt"
+            inputMode="email"
+            placeholder="email@gmail.com"
+          />
+          <Input
+            label="Senha"
+            inputIcon="lock"
+            inputMode="numeric"
+            placeholder="*******"
+            maxLength={8}
+            password={true}
+          />
+        </View>
+        <Button Label="Entrar" onPress={ValidationAuth} />
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  h1: {
-    fontSize: 32,
-    color: "white",
-    fontWeight: "bold",
-    marginBottom: 32,
-  },
-});
 
 export default Login;

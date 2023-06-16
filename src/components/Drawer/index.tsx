@@ -4,7 +4,7 @@ import { TabNavigate } from "../Tabs";
 
 import Dasboard from "../../screens/dasboard";
 import { CustomDrawer } from "./customDrawer";
-import { HeaderDrawer } from "../headerDrawer";
+import { HeaderDrawer } from "./headerDrawer";
 
 export const DrawerNavigate = () => {
   const Drawer = createDrawerNavigator();
@@ -18,7 +18,7 @@ export const DrawerNavigate = () => {
         name="route"
         component={TabNavigate}
         options={{
-          drawerLabel: "Home",
+          drawerLabel: "Pagina Inicial",
           drawerLabelStyle: { marginLeft: -20 },
           drawerActiveBackgroundColor: "#881337",
           drawerActiveTintColor: "#ffffff",

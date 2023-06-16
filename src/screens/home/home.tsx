@@ -1,10 +1,11 @@
 import "react-native-gesture-handler";
 import { ScrollView, Text, View } from "react-native";
+import { Calendar } from "../../components/calendar";
 
 const Home = () =>{
   return (
-<View className="flex-1 bg-slate-500">
-  <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">Calendario</Text>
+<View className="flex-1 p-2 bg-slate-500">
+  <Calendar/>
   <ScrollView horizontal>
   <View className="w-32 bg-black border border-white mx-1"/>
   <View className="w-32 bg-black border border-white mx-1"/>
