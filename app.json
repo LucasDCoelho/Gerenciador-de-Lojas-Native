@@ -29,14 +29,6 @@
       "eas": {
         "projectId": "02d84bcc-dc83-4bb1-a257-1518ff6a5825"
       }
-    },
-    "plugins": [
-      [
-        "expo-calendar",
-        {
-          "calendarPermission": "The app needs to access your calendar."
-        }
-      ]
-    ]
+    }
   }
 }

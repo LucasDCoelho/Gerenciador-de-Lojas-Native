@@ -1,23 +1,77 @@
-import "react-native-gesture-handler";
-import { ScrollView, Text, View } from "react-native";
-import { Calendar } from "../../components/calendar";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { ScrollView, Text, TextInput, View } from "react-native";
+import CalendarView from "../../components/calendar";
 
-const Home = () =>{
+const Home = () => {
   return (
-<View className="flex-1 p-2 bg-slate-500">
-  <Calendar/>
-  <ScrollView horizontal>
-  <View className="w-32 bg-black border border-white mx-1"/>
-  <View className="w-32 bg-black border border-white mx-1"/>
-  <View className="w-32 bg-black border border-white mx-1"/>
-  <View className="w-32 bg-black border border-white mx-1"/>
-  </ScrollView>
-  <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">Tarefas</Text>
-  <Text className="text-base font-bold text-slate-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, perspiciatis eveniet. Quas perferendis fugit cumque quo est eaque? Beatae esse quidem aliquam reiciendis nihil harum optio veritatis, repellat fugiat voluptas?</Text>
-  <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">Lembretes</Text>
-  <Text className="text-base font-bold text-slate-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, perspiciatis eveniet. Quas perferendis fugit cumque quo est eaque? Beatae esse quidem aliquam reiciendis nihil harum optio veritatis, repellat fugiat voluptas?</Text>
-</View>
+    <View className="flex-1 bg-slate-500">
+      <ScrollView>
+        <View className="">
+          <CalendarView />
+          <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">
+            Tarefas
+          </Text>
+          <View className="mx-3">
+            <View className="m-2 gap-2">
+              <BouncyCheckbox
+                size={25}
+                fillColor="#green" 
+                unfillColor="#000000"
+                textComponent={(
+                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
+                )}
+                iconStyle={{ borderColor: "green" }}
+                innerIconStyle={{ borderWidth: 1 }}
+                onPress={(isChecked: boolean) => {}}
+              />
+              <BouncyCheckbox
+                size={25}
+                fillColor="#green" 
+                unfillColor="#000000"
+                textComponent={(
+                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
+                )}
+                iconStyle={{ borderColor: "green" }}
+                innerIconStyle={{ borderWidth: 1 }}
+                onPress={(isChecked: boolean) => {}}
+              />
+              <BouncyCheckbox
+                size={25}
+                fillColor="#green" 
+                unfillColor="#000000"
+                textComponent={(
+                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
+                )}
+                iconStyle={{ borderColor: "green" }}
+                innerIconStyle={{ borderWidth: 1 }}
+                onPress={(isChecked: boolean) => {}}
+              />
+              <BouncyCheckbox
+                size={25}
+                fillColor="#green" 
+                unfillColor="#000000"
+                textComponent={(
+                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
+                )}
+                iconStyle={{ borderColor: "green" }}
+                innerIconStyle={{ borderWidth: 1 }}
+                onPress={(isChecked: boolean) => {}}
+              />
+            </View>
+          </View>
+          <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">
+            Lembretes
+          </Text>
+          <Text className="text-base font-bold text-slate-300">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
+            perspiciatis eveniet. Quas perferendis fugit cumque quo est eaque?
+            Beatae esse quidem aliquam reiciendis nihil harum optio veritatis,
+            repellat fugiat voluptas?
+          </Text>
+        </View>
+      </ScrollView>
+    </View>
   );
-}
+};
 
-export default Home
+export default Home;

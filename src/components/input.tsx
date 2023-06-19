@@ -14,7 +14,7 @@ interface Btn {
 export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password }: Btn) => {
   return (
     <>
-      <Text className="text-xl font-bold">{label}</Text>
+      <Text className="text-xl font-bold text-white">{label}</Text>
       <View className="flex-row my-2">
         <FontAwesome5
           name={inputIcon}
@@ -23,7 +23,7 @@ export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, pas
           style={{ position: "absolute", margin: 10, zIndex:30}}
         />
         <TextInput
-          className="border-2 px-10 py-2 rounded-md w-full focus:bg-slate-200 focus:border-rose-800"
+          className="border-2 px-10 py-2 rounded-md bg-slate-200 w-full focus:bg-slate-200 focus:border-rose-800"
           placeholder={placeholder}
           inputMode={inputMode}
           maxLength={maxLength}

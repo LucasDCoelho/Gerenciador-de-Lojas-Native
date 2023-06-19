@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import Icon from "@expo/vector-icons/FontAwesome";
 import { Text, View } from "react-native";
-import { Button } from "../../components/button";
+import { Button } from "../../components/Button";
 
 const Settings = () => {
   return (

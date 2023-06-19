@@ -11,7 +11,9 @@ type AuthContextType = {
   setSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const AuthContext = React.createContext<AuthContextType | any>(null);
+export const AuthContext = React.createContext<AuthContextType>(
+  {} as AuthContextType
+);
 
 export const Routes = () => {
   const Stack = createNativeStackNavigator();
@@ -26,18 +28,19 @@ export const Routes = () => {
     <AuthContext.Provider value={{ signedIn, setSignedIn }}>
       <Stack.Navigator
         initialRouteName="login"
-        screenOptions={{ headerShown: false }}>
+        screenOptions={{ headerShown: false }}
+      >
         {signedIn ? (
           <>
-            <Stack.Screen component={DrawerNavigate} name="home"/>
-            <Stack.Screen component={Shops} name="lojas"/>
-            <Stack.Screen component={NotFound} name="notFound"/>
+            <Stack.Screen component={DrawerNavigate} name="home" />
+            <Stack.Screen component={Shops} name="lojas" />
           </>
         ) : (
           <>
-            <Stack.Screen component={Login} name="login"/>
+            <Stack.Screen component={Login} name="login" />
           </>
         )}
+        <Stack.Screen component={NotFound} name="notFound" />
       </Stack.Navigator>
     </AuthContext.Provider>
   );
