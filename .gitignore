@@ -1,9 +1,9 @@
+.yarn
 node_modules/
 .expo/
 dist/
 npm-debug.*
 *.jks
-*.yarn
 *.p8
 *.p12
 *.key
