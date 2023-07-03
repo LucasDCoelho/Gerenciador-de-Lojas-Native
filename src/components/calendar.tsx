@@ -20,8 +20,16 @@ const CalendarView: React.FC<CalendarViewProps> = ({ style }) => {
       <DatePicker
       selected={getFormatedDate(new Date(), 'DD/MM/YYYY')}
       onDateChange={day =>(Alert.alert(day))}
+      options={{
+        backgroundColor:'#881337',
+        borderColor:'#000',
+        textHeaderColor:'#fff', //header color
+        textSecondaryColor:'#fff',//semana
+        selectedTextColor:'#fff', //selecao numero
+        mainColor:'#000', //circulo
+        textDefaultColor:'#fff', //numeros
+      }}
       mode="calendar"
-
       />
     </View>
   );

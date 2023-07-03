@@ -10,9 +10,20 @@ export const DrawerNavigate = () => {
   const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator
-      screenOptions={{title: "", headerRight:()=>(
-        <HeaderDrawer/>
-      )}}
+      initialRouteName="dasboard"
+      screenOptions={{
+        drawerInactiveTintColor:'#fff',
+        drawerStyle:{
+          backgroundColor:'#1e293b'
+        },
+        headerStyle: {
+          backgroundColor: '#881337'
+        },
+        title: "", headerRight: () => (
+          <HeaderDrawer />
+        ),
+      }
+      }
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen
         name="route"

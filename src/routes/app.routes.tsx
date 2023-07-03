@@ -18,7 +18,7 @@ export const AuthContext = React.createContext<AuthContextType>(
 export const Routes = () => {
   const Stack = createNativeStackNavigator();
 
-  const [signedIn, setSignedIn] = React.useState(false);
+  const [signedIn, setSignedIn] = React.useState(true);
 
   React.useEffect(() => {
     console.log(signedIn);

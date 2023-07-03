@@ -1,73 +1,17 @@
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { FontAwesome5 } from '@expo/vector-icons'
 import { ScrollView, Text, TextInput, View } from "react-native";
+import DropDownPicker from 'react-native-dropdown-picker';
 import CalendarView from "../../components/calendar";
+import { useState } from "react";
+import Task from '../../utils/Tarefa';
 
 const Home = () => {
   return (
-    <View className="flex-1 bg-slate-500">
+    <View className="flex-1 p-1 bg-slate-800">
       <ScrollView>
-        <View className="">
+        <View>
           <CalendarView />
-          <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">
-            Tarefas
-          </Text>
-          <View className="mx-3">
-            <View className="m-2 gap-2">
-              <BouncyCheckbox
-                size={25}
-                fillColor="#green" 
-                unfillColor="#000000"
-                textComponent={(
-                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
-                )}
-                iconStyle={{ borderColor: "green" }}
-                innerIconStyle={{ borderWidth: 1 }}
-                onPress={(isChecked: boolean) => {}}
-              />
-              <BouncyCheckbox
-                size={25}
-                fillColor="#green" 
-                unfillColor="#000000"
-                textComponent={(
-                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
-                )}
-                iconStyle={{ borderColor: "green" }}
-                innerIconStyle={{ borderWidth: 1 }}
-                onPress={(isChecked: boolean) => {}}
-              />
-              <BouncyCheckbox
-                size={25}
-                fillColor="#green" 
-                unfillColor="#000000"
-                textComponent={(
-                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
-                )}
-                iconStyle={{ borderColor: "green" }}
-                innerIconStyle={{ borderWidth: 1 }}
-                onPress={(isChecked: boolean) => {}}
-              />
-              <BouncyCheckbox
-                size={25}
-                fillColor="#green" 
-                unfillColor="#000000"
-                textComponent={(
-                <Text className="mx-2 text-white font-semibold">agendar minha casa para queimar</Text>
-                )}
-                iconStyle={{ borderColor: "green" }}
-                innerIconStyle={{ borderWidth: 1 }}
-                onPress={(isChecked: boolean) => {}}
-              />
-            </View>
-          </View>
-          <Text className="text-2xl font-bold text-white bg-slate-800 text-center p-2 mx-2 rounded-md my-2">
-            Lembretes
-          </Text>
-          <Text className="text-base font-bold text-slate-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-            perspiciatis eveniet. Quas perferendis fugit cumque quo est eaque?
-            Beatae esse quidem aliquam reiciendis nihil harum optio veritatis,
-            repellat fugiat voluptas?
-          </Text>
+            <Task mode='Tasks'/>
         </View>
       </ScrollView>
     </View>
