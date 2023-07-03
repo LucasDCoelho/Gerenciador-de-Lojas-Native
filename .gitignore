@@ -3,6 +3,7 @@ node_modules/
 dist/
 npm-debug.*
 *.jks
+*.yarn
 *.p8
 *.p12
 *.key
