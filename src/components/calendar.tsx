@@ -1,36 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleProp, ViewStyle, Alert } from "react-native";
-import DatePicker, {getFormatedDate} from 'react-native-modern-datepicker';
+import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
 
+const CalendarView: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState(['']);
 
-type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
+ 
 
-interface CalendarViewProps {
-  style?: CustomStyleProp;
-}
-
-
-
-const CalendarView: React.FC<CalendarViewProps> = ({ style }) => {
-
-  const [selectedDate, setSelectedDate] = useState('');
+  useEffect(() => {
+    console.log(selectedDate)
+  }, [selectedDate])
 
   return (
     <View className="scale-95">
-      <DatePicker
-      selected={getFormatedDate(new Date(), 'DD/MM/YYYY')}
-      onDateChange={day =>(Alert.alert(day))}
-      options={{
-        backgroundColor:'#881337',
-        borderColor:'#000',
-        textHeaderColor:'#fff', //header color
-        textSecondaryColor:'#fff',//semana
-        selectedTextColor:'#fff', //selecao numero
-        mainColor:'#000', //circulo
-        textDefaultColor:'#fff', //numeros
-      }}
-      mode="calendar"
-      />
+      
     </View>
   );
 };

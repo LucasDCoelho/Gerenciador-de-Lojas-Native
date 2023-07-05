@@ -4,10 +4,10 @@ import Icon from "@expo/vector-icons/FontAwesome";
 import Home from "../../screens/home/home";
 import Settings from "../../screens/home/settings";
 import Meeting from "../../screens/home/meeting";
-import { View } from "react-native";
 
 export const TabNavigate = () => {
   const Tab = createBottomTabNavigator();
+  
   return (
     <Tab.Navigator
       screenOptions={{

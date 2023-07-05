@@ -1,27 +1,29 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "@expo/vector-icons/FontAwesome";
-import { TabNavigate } from "../Tabs";
 
-import Dasboard from "../../screens/dasboard";
 import { CustomDrawer } from "./customDrawer";
 import { HeaderDrawer } from "./headerDrawer";
 
+import { TabNavigate } from "../Tabs";
+import Dasboard from "../../screens/dasboard";
+
 export const DrawerNavigate = () => {
+
   const Drawer = createDrawerNavigator();
+
   return (
     <Drawer.Navigator
       initialRouteName="dasboard"
       screenOptions={{
-        drawerInactiveTintColor:'#fff',
-        drawerStyle:{
-          backgroundColor:'#1e293b'
+        title: "",
+        drawerInactiveTintColor: '#fff',
+        drawerStyle: {
+          backgroundColor: '#1e293b'
         },
         headerStyle: {
           backgroundColor: '#881337'
         },
-        title: "", headerRight: () => (
-          <HeaderDrawer />
-        ),
+        headerRight: HeaderDrawer,
       }
       }
       drawerContent={(props) => <CustomDrawer {...props} />}>

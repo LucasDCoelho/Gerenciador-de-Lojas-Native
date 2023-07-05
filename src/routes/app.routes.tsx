@@ -27,19 +27,21 @@ export const Routes = () => {
   return (
     <AuthContext.Provider value={{ signedIn, setSignedIn }}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
-        {signedIn ? (
-          <>
-            <Stack.Screen component={DrawerNavigate} name="home" />
-            <Stack.Screen component={Shops} name="lojas" />
-          </>
-        ) : (
-          <>
-            <Stack.Screen component={Login} name="login" />
-          </>
-        )}
+        {
+          signedIn ? (
+            <>
+              <Stack.Screen component={DrawerNavigate} name="home" />
+              <Stack.Screen component={Shops} name="lojas" />
+            </>
+          ) : (
+            <>
+              <Stack.Screen component={Login} name="login" />
+            </>
+          )
+        }
         <Stack.Screen component={NotFound} name="notFound" />
       </Stack.Navigator>
     </AuthContext.Provider>

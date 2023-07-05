@@ -1,12 +1,25 @@
 import * as React from 'react';
-import {View , Text} from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import Mensagem from '../../utils/mensage';
 
-interface CardTaskProps{}
+export interface CardTaskProps {
+  messages: any
+}
 
-const CardTask = ({}:CardTaskProps) => {
+const CardTask = ({ messages }: CardTaskProps) => {
   return (
-    <View className='w-auto h-32 mx-4 my-2 rounded-lg bg-slate-500'>
-      
+    <View className='h-auto my-3 mx-4 p-2 justify-center rounded-lg bg-slate-500'>
+      {
+        messages?.map((item: any) => {
+          return (
+            <Mensagem
+              key={item.id}
+              description={item.descriptions}
+              name={item.name} />
+          )
+        })
+      }
+
     </View>
   );
 };
