@@ -13,7 +13,7 @@ export const DrawerNavigate = () => {
 
   return (
     <Drawer.Navigator
-      initialRouteName="dasboard"
+      initialRouteName="route"
       screenOptions={{
         title: "",
         drawerInactiveTintColor: '#fff',

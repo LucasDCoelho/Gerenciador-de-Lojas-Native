@@ -18,7 +18,7 @@ export const AuthContext = React.createContext<AuthContextType>(
 export const Routes = () => {
   const Stack = createNativeStackNavigator();
 
-  const [signedIn, setSignedIn] = React.useState(true);
+  const [signedIn, setSignedIn] = React.useState(false);
 
   React.useEffect(() => {
     console.log(signedIn);
@@ -27,7 +27,7 @@ export const Routes = () => {
   return (
     <AuthContext.Provider value={{ signedIn, setSignedIn }}>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="login"
         screenOptions={{ headerShown: false }}
       >
         {
