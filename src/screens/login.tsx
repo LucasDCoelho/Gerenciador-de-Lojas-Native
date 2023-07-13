@@ -11,15 +11,15 @@ const Login = () => {
     const { signedIn, setSignedIn } = React.useContext(AuthContext);
 
     const ValidationAuth = () => {
-        setSignedIn(true);
-    };
-
-    React.useEffect(() => {
         if (!signedIn) {
             return;
         } else {
-            navigate("home");
+            setSignedIn(true);
         }
+    };
+
+    React.useEffect(() => {
+        
     }, [signedIn]);
 
     return (

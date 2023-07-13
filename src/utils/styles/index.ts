@@ -1,0 +1,21 @@
+export const calendarTheme:any = {
+  backgroundColor: '#000',
+  calendarBackground: '#ffffff',
+  textSectionTitleColor: '#333333',
+  selectedDayBackgroundColor: '#000',
+  selectedDayTextColor: '#FFFFFF',
+  todayTextColor: '#ffffff',
+  dayTextColor: '#333333',
+  textDisabledColor: '#CCCCCC',
+  selectedDotColor: '#FFFFFF',
+  /* dotColor: '#4CAF50',
+  arrowColor: '#4CAF50',
+  monthTextColor: '#4CAF50',
+  indicatorColor: '#4CAF50', */
+  textDayFontWeight: '500',
+  textMonthFontWeight: 'bold',
+  textDayHeaderFontWeight: 'bold',
+  textDayFontSize: 14,
+  textMonthFontSize: 16,
+  textDayHeaderFontSize: 14,
+};

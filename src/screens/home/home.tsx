@@ -1,92 +1,57 @@
-import * as React from 'react'
-import { SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
-import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
-import Task from '../../utils/Tarefa';
+import React from 'react';
+import { View, Text, SafeAreaView } from 'react-native';
+import { Agenda, AgendaEntry } from 'react-native-calendars';
+import { calendarTheme } from '../../utils/styles';
+import { ModalAdicionar } from '../../components/Modal';
+import { EventContext } from '../../routes/app.routes';
+
+interface Event extends AgendaEntry {
+  title: string;
+  time: string;
+}
+
 
 const Home = () => {
-  const [selectedDate, setSelectedDate] = React.useState('');
-
-  const SelectDate = (day: string) => {
-    setSelectedDate(day)
-  }
-
-  const dataTask = [{
-    '13/07/2023': [
-      {
-        id: 1,
-        name: 'l',
-        descriptions: "Fazer Compras2"
-      },
-      {
-        id: 2,
-        name: 'n',
-        descriptions: "Fazer Compras1"
-      },
-      {
-        id: 3,
-        name: 'b',
-        descriptions: "Fazer Compras5"
-      },
+  const { isOpenModal, setIsOpenModal } = React.useContext(EventContext)
+  const events: { [date: string]: Event[] } = {
+    '2023-07-12': [{ title: 'Reunião 1', time: '10:00' }],
+    '2023-07-13': [{ title: 'Reunião 2', time: '10:00' }],
+    '2023-07-14': [
+      { title: 'Reunião 2', time: '14:00' },
+      { title: 'Reunião 3', time: '15:30' },
+      { title: 'Reunião 4', time: '15:35' },
     ],
-    '14/07/2023': [
-      {
-        id: 1,
-        name: 'j',
-        descriptions: "virar presidente"
-      },
-      {
-        id: 2,
-        name: 'f',
-        descriptions: "dancar"
-      },
-      {
-        id: 3,
-        name: 's',
-        descriptions: "comer bobs"
-      },
-    ],
-  }]
-
-  const datas = selectedDate;
-  const dateParts = datas.split("/");
-  const day = dateParts[2];
-
-
-  React.useEffect(() => {
-  }, [selectedDate]);
+  };
+  const renderEmptyDate = () => {
+    return (
+      <View className='p-4 flex-1'>
+        <Text>Não há eventos neste dia</Text>
+      </View>
+    );
+  };
+  const renderItem = ({ ...item }) => {
+    return (
+      <View className='rounded-lg p-4 my-4 mx-1 border-2'>
+        <View className='flex-1'>
+          <Text className='font-bold'>{item.title}</Text>
+          <Text className='text-gray-500'>{item.time}</Text>
+        </View>
+      </View>
+    );
+  };
 
   return (
-    <SafeAreaView className="flex-1 p-1 bg-slate-800">
-      <ScrollView>
-        <View className="scale-95">
-          <DatePicker
-            selected={getFormatedDate(new Date(), 'DD/MM/YYYY')}
-            onDateChange={day => SelectDate(day)}
-            options={{
-              backgroundColor: '#881337',
-              borderColor: '#000',
-              textHeaderColor: '#fff', //header color
-              textSecondaryColor: '#fff',//semana
-              selectedTextColor: '#fff', //selecao numero
-              mainColor: '#000', //circulo
-              textDefaultColor: '#fff', //numeros
-            }}
-            mode="calendar"
-          />
-        </View>
-        {
-          dataTask.map((item: any) => {
-            return (
-              <>
-                <Task mode='Tasks' data={item[`${day}/07/2023`]} key={day} />
-                <Task mode='Lembretes' data={item[`${day}/07/2023`]} key={day+1} />
-              </>
-            )
-          })
-        }
 
-      </ScrollView>
-    </SafeAreaView >
+    
+      <SafeAreaView className='flex-1 bg-slate-500'>
+        <Agenda
+          theme={calendarTheme}
+          items={events}
+          renderEmptyData={renderEmptyDate}
+          renderItem={renderItem}
+        />
+        <ModalAdicionar isOpen={isOpenModal} />
+      </SafeAreaView>
   );
 };
 

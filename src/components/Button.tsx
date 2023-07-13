@@ -11,7 +11,7 @@ export const Button = ({ Label, onPress, className, ...rest }: Btn) => {
   return (
     <StyledComponent
       component={Pressable}
-      className={`w-full justify-center items-center py-3 my-2 rounded-md bg-rose-800 active:bg-rose-950`}
+      className={`w-full justify-center items-center py-3 px-2 my-2 rounded-md bg-rose-800 active:bg-rose-950`}
       onPress={onPress}
       {...rest}
       >
