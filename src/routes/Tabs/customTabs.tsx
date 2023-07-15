@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { EvilIcons } from "@expo/vector-icons"
 import { Text, View, Pressable } from "react-native"
-import { EventContext } from '../../routes/app.routes'
+import { EventContext } from '../app.routes'
 
 export const CustomTabs = ({ ...props }) => {
 

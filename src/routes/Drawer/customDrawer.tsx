@@ -7,11 +7,9 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { DrawerItemCostumer } from "./drawerItem";
 import React from "react";
-import { AuthContext } from "../../routes/app.routes";
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigate } = useNavigation();
-  const { setSignedIn } = React.useContext(AuthContext)
   return (
     <View className="flex-1 bg-red-5000">
       <View className="w-full justify-center items-start p-2 bg-rose-900">
@@ -70,7 +68,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         <View className="h-1 mx-4 rounded-md bg-black" />
         <DrawerItemCostumer
           label="Logout"
-          onPress={() => setSignedIn(false)}
+          onPress={() => navigate('login')}
           nameIcon={"sign-out-alt"}
         />
       </View>

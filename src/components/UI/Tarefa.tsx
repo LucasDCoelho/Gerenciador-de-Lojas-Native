@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import CardTask, { CardTaskProps } from '../components/Cards/CardTask';
+import CardTask, { CardTaskProps } from '../Cards/CardTask';
 import Animated, { SlideInLeft, SlideInRight } from 'react-native-reanimated';
 
 interface TaskProps {

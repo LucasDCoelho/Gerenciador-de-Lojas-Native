@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { Button } from '../Button';
-import { Input } from '../input';
+import { Button } from '../UI/Button';
+import { Input } from '../UI/input';
 
 interface ModalProps {
     isOpen: boolean

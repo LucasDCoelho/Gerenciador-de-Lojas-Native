@@ -2,8 +2,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "@expo/vector-icons/FontAwesome";
 
 import Home from "../../screens/home/home";
-import Settings from "../../screens/home/settings";
-import Meeting from "../../screens/home/meeting";
 import { CustomTabs } from "./customTabs";
 
 export const TabNavigate = () => {

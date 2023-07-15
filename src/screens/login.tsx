@@ -2,26 +2,10 @@ import React from "react";
 import { Image, Text, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from "../routes/app.routes";
-import { Input } from "../components/input";
-import { Button } from "../components/Button";
+import { Input } from "../components/UI/input";
+import { Button } from "../components/UI/Button";
 
 const Login = () => {
-    const { navigate } = useNavigation();
-    const { signedIn, setSignedIn } = React.useContext(AuthContext);
-
-    const ValidationAuth = () => {
-        if (!signedIn) {
-            return;
-        } else {
-            setSignedIn(true);
-        }
-    };
-
-    React.useEffect(() => {
-        
-    }, [signedIn]);
-
     return (
         <View className="flex-1 p-8 justify-center items-center bg-black">
             <View className="w-full justify-between p-4 m-4 rounded-md border-2 border-rose-800  items-center bg-black">
@@ -43,7 +27,7 @@ const Login = () => {
                         password={true}
                     />
                 </View>
-                <Button Label="Entrar" onPress={ValidationAuth} />
+                <Button Label="Entrar" />
             </View>
         </View>
     );
