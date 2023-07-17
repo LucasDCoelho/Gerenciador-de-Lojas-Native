@@ -8,10 +8,10 @@ export const calendarTheme:any = {
   dayTextColor: '#333333',
   textDisabledColor: '#CCCCCC',
   selectedDotColor: '#FFFFFF',
-  /* dotColor: '#4CAF50',
+  dotColor: '#4CAF50',
   arrowColor: '#4CAF50',
   monthTextColor: '#4CAF50',
-  indicatorColor: '#4CAF50', */
+  indicatorColor: '#4CAF50',
   textDayFontWeight: '500',
   textMonthFontWeight: 'bold',
   textDayHeaderFontWeight: 'bold',

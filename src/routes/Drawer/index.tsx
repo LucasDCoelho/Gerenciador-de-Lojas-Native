@@ -4,8 +4,8 @@ import Icon from "@expo/vector-icons/FontAwesome";
 import { CustomDrawer } from "./customDrawer";
 import { HeaderDrawer } from "./headerDrawer";
 
-import { TabNavigate } from "../Tabs";
 import Dasboard from "../../screens/dasboard";
+import Home from "../../screens/home/home";
 
 export const DrawerNavigate = () => {
 
@@ -29,7 +29,7 @@ export const DrawerNavigate = () => {
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen
         name="route"
-        component={TabNavigate}
+        component={Home}
         options={{
           drawerLabel: "Pagina Inicial",
           drawerLabelStyle: { marginLeft: -20 },
