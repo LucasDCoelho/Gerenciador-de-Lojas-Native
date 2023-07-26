@@ -9,19 +9,19 @@ interface Btn {
   placeholder: string;
   password?: boolean;
   maxLength?: number;
-  inputMode: InputModeOptions | undefined;
+  inputMode?: InputModeOptions;
 }
 
-export const Input = ({ ...rest }, { label, inputIcon, inputMode, placeholder, maxLength, password }: Btn) => {
+export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password }: Btn) => {
   return (
     <>
-      <StyledComponent component={Text} className="text-xl font-bold text-white" {...rest}>{label}</StyledComponent>
+      <Text className="text-xl font-bold text-white">{label}</Text>
       <View className="flex-row my-2">
         <FontAwesome5
           name={inputIcon}
           size={23}
           color={"black"}
-          style={{ position: "absolute", margin: 10, zIndex: 30 }}
+          style={{ position: "absolute", margin: 10, zIndex: 40 }}
         />
         <TextInput
           className="border-2 px-14 py-2 rounded-md bg-slate-200 w-full focus:bg-slate-200 focus:border-rose-800"
