@@ -11,7 +11,7 @@ import React from "react";
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigate } = useNavigation();
   return (
-    <View className="flex-1 bg-red-5000">
+    <View className="flex-1 bg-red-500">
       <View className="w-full justify-center items-start p-2 bg-rose-900">
         <View className="w-16 h-16 m-2 items-center justify-center rounded-full border-2 border-white">
           <Text className="text-white text-3xl">B</Text>

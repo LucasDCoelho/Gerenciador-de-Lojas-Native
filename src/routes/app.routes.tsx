@@ -9,7 +9,7 @@ export const Routes = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="home"
+      initialRouteName="login"
       screenOptions={{ headerShown: false }}>
       <Stack.Screen component={Login} name="login" />
       <Stack.Screen component={DrawerNavigate} name="home" />

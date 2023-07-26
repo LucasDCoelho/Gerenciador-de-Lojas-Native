@@ -1,0 +1,1 @@
+export const ICON_LOGO_URL = "../../assets/icon.png"
