@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "572171732460",
+    "project_id": "divinoassist",
+    "storage_bucket": "divinoassist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572171732460:android:4281f91e76cd1fc6122cc9",
+        "android_client_info": {
+          "package_name": "com.brunogdev.crmproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572171732460-osal84fu9e6l1abpgeov3hqdjhief1hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW3GRpQskecMekyC2QJQkVYR3uwx3gD-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572171732460-osal84fu9e6l1abpgeov3hqdjhief1hk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

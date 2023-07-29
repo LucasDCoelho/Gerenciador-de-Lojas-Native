@@ -16,6 +16,7 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -29,6 +30,9 @@
       "eas": {
         "projectId": "02d84bcc-dc83-4bb1-a257-1518ff6a5825"
       }
-    }
+    },
+    "plugins": [
+      "@react-native-firebase/app"
+    ]
   }
 }

@@ -1,13 +1,20 @@
-import React from "react";
-import { Image, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Text, View } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
 import { Input } from "../components/UI/input";
 import { Button } from "../components/UI/Button";
-import { ICON_LOGO_URL } from "../constants/images";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
-    const image = "../../assets/icon.png"
+    const { signIn } = useAuth()
+
+    const [ email, setEmail ] = useState("")
+    const [ password, setPassword ] = useState("")
+
+    const handleSignIn = () => {
+        signIn(email, password)
+    }
+
     return (
         <View className="flex-1 p-8 justify-center items-center bg-black">
             <View className="w-full justify-between p-4 m-4 rounded-md border-2 border-rose-800  items-center bg-black">
@@ -19,6 +26,8 @@ const Login = () => {
                         inputIcon="user-alt"
                         inputMode="email"
                         placeholder="email@gmail.com"
+                        value={email}
+                        changeText={setEmail}
                     />
                     <Input
                         label="Senha"
@@ -27,9 +36,14 @@ const Login = () => {
                         placeholder="*******"
                         maxLength={8}
                         password={true}
+                        value={password}
+                        changeText={setPassword}
                     />
                 </View>
-                <Button Label="Entrar" />
+                <Button 
+                    Label="Entrar" 
+                    onPress={handleSignIn}    
+                />
             </View>
         </View>
     );

@@ -1,18 +1,21 @@
-import React from 'react'
-import { FontAwesome5 } from '@expo/vector-icons'
+import React, { useState} from 'react'
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5"
 import { StyledComponent } from 'nativewind';
 import { Text, View, TextInput, InputModeOptions } from "react-native";
 
-interface Btn {
+interface InputProps {
   label: string;
   inputIcon: string;
   placeholder: string;
   password?: boolean;
   maxLength?: number;
   inputMode?: InputModeOptions;
+  value?: string;
+  changeText: (text: string) => void;
 }
 
-export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password }: Btn) => {
+export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password, value, changeText }: InputProps) => {
+
   return (
     <>
       <Text className="text-xl font-bold text-white">{label}</Text>
@@ -29,7 +32,8 @@ export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, pas
           inputMode={inputMode}
           maxLength={maxLength}
           secureTextEntry={password}
-          
+          value={value}
+          onChangeText={changeText}
         />
       </View>
     </>
