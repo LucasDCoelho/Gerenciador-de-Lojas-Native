@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 const Dasboard = () => {
   return (

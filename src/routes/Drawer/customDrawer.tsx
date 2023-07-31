@@ -7,9 +7,23 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { DrawerItemCostumer } from "./drawerItem";
 import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigate } = useNavigation();
+  const { user, signOut } = useAuth()
+
+  const handleSignOut = () =>{
+    signOut()
+    .then(()=>{
+      navigate("login")
+      console.log("Usuario deslogado")
+    })
+    .catch((error)=>{
+      console.error(error)
+    })
+  }
+
   return (
     <View className="flex-1 bg-red-500">
       <View className="w-full justify-center items-start p-2 bg-rose-900">
@@ -18,7 +32,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         </View>
         <Text className="text-white text-md font-bold">Bruno Gomes</Text>
         <Text className="text-white text-md font-semibold">
-          Brunogomesdsilva8@gmail.com
+          <Text>{user?.email}</Text>
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
@@ -68,7 +82,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         <View className="h-1 mx-4 rounded-md bg-black" />
         <DrawerItemCostumer
           label="Logout"
-          onPress={() => navigate('login')}
+          onPress={handleSignOut}
           nameIcon={"sign-out-alt"}
         />
       </View>
