@@ -36,14 +36,13 @@ const Login = () => {
         setError("Usuário não encontrado.")
         return;
       }
+      
 
       await signIn(email, password)
       navigation.navigate("home")
 
     } catch (error) {
-      if(error as FirebaseAuthTypes.NativeFirebaseAuthError){
-        handleError(error)
-      }
+      handleError((error) as FirebaseAuthTypes.NativeFirebaseAuthError)
     }
   }
 
