@@ -31,7 +31,7 @@ export const DataEvent = () => {
   const [eventsCalendar, setEventsCalendar] = useState<DataEventProps>({});
 
   const {fetchData } = useFetch(
-    "https://64876dc4beba62972790a252.mockapi.io/Divino/task"
+    "https://64d536d6b592423e469544ad.mockapi.io/task/tasks"
   );
   
   useEffect(() => {

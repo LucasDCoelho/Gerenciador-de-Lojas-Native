@@ -10,20 +10,18 @@ const Stack = createNativeStackNavigator();
 
 const PrivateRoute = () => {
   const { user } = useAuth()
+import { Checklist } from "../screens/home/checklist";
 
   return (
     <Stack.Navigator
       initialRouteName={user ? "home" : "login"}
-      screenOptions={{ headerShown: false }}>
       <Stack.Screen  name="login">
-        {()=> <Login />}
       </Stack.Screen>
       
       <Stack.Screen component={DrawerNavigate} name="home" />
       <Stack.Screen
         component={Event}
         name="events"
-        
         options={{animation: "slide_from_bottom" }}
       />
     </Stack.Navigator>

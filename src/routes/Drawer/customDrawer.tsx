@@ -63,11 +63,6 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
           nameIcon={"wrench"}
         />
         <DrawerItemCostumer
-          label="Checklist"
-          onPress={() => navigate("notFound")}
-          nameIcon={"clipboard-list"}
-        />
-        <DrawerItemCostumer
           label="Compras"
           onPress={() => navigate("notFound")}
           nameIcon={"dolly-flatbed"}
@@ -83,6 +78,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         <DrawerItemCostumer
           label="Logout"
           onPress={handleSignOut}
+          onPress={() => navigate("login")}
           nameIcon={"sign-out-alt"}
         />
       </View>

@@ -6,7 +6,7 @@ type dadosEvent = {
   dados: {
     id: string;
     description: string;
-    date: Date;
+    date: string;
   };
 };
 
@@ -22,23 +22,18 @@ const NovosDados = ({ dados }: dadosEvent) => {
     };
 
     try {
-      // Verificar se o ID já existe na API
       await axios.get(
-        "https://64876dc4beba62972790a252.mockapi.io/Divino/task/" + task.id
+        "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/" + task.id
       );
 
-      // Se a solicitação GET for bem-sucedida, o ID já existe
       console.log("ID já existe na API");
 
-      // Você pode retornar ou fazer qualquer outra ação necessária aqui
       return;
     } catch (error) {
-      // Se ocorrer um erro, verifique se é um erro 500
       if (error.response && error.response.status === 500) {
-        // ID não existe, fazer a requisição POST
         try {
           const response = await axios.post(
-            "https://64876dc4beba62972790a252.mockapi.io/Divino/task",
+            "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/",
             task
           );
           console.log("Evento criado:", response.data);

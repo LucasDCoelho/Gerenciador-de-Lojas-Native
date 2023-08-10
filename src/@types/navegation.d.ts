@@ -8,6 +8,7 @@ export declare global {
             lojas: undefined;
             notFound: undefined;
             events: undefined;
+            checklist: undefined;
         }
     }
 }

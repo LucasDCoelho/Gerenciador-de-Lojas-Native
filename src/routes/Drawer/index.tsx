@@ -6,6 +6,7 @@ import { HeaderDrawer } from "./headerDrawer";
 
 import Dasboard from "../../screens/dasboard";
 import Home from "../../screens/home/home";
+import { Checklist } from "../../screens/home/checklist";
 
 export const DrawerNavigate = () => {
 
@@ -50,6 +51,19 @@ export const DrawerNavigate = () => {
           drawerActiveTintColor: "#ffffff",
           drawerIcon: ({ size, color }) => (
             <Icon name="bar-chart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="checklist"
+        component={Checklist}
+        options={{
+          drawerLabel: "checklist",
+          drawerLabelStyle: { marginLeft: -20 },
+          drawerActiveBackgroundColor: "#881337",
+          drawerActiveTintColor: "#ffffff",
+          drawerIcon: ({ size, color }) => (
+            <Icon name="clipboard" size={size} color={color} />
           ),
         }}
       />
