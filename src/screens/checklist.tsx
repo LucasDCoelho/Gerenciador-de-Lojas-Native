@@ -1,11 +1,11 @@
 import { Text, View, Image, ScrollView } from "react-native";
-import { ChecklistItens } from "../../components/UI/checklist";
-import { ModalAdicionar } from "../../components/Modal";
+import { ChecklistItens } from "../components/UI/checklist";
+import { ModalAdicionar } from "../components/Modal";
 
-export const Checklist = () => {
+const ChecklistScreen = () => {
   return (
     <View className="flex-1 justify-center items-center px-4 bg-slate-800">
-      <Text className="text-3xl font-semibold mb-4 text-white">Checklist</Text>
+      <Text className="text-3xl font-semibold mb-4 text-white">Novembro</Text>
       <View className="w-full py-4 my-2 items-center justify-center bg-slate-900 rounded-lg">
         <Text className="text-xl text-white">Primeira semana V</Text>
       </View>
@@ -28,3 +28,5 @@ export const Checklist = () => {
     </View>
   );
 };
+
+export default ChecklistScreen

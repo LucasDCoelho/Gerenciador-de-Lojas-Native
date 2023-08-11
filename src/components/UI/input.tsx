@@ -1,9 +1,8 @@
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { StyledComponent } from 'nativewind';
 import { Text, View, TextInput, InputModeOptions } from "react-native";
 
-interface Btn {
+interface InputProps {
   label: string;
   inputIcon: string;
   placeholder: string;
@@ -12,7 +11,8 @@ interface Btn {
   inputMode?: InputModeOptions;
 }
 
-export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password }: Btn) => {
+export const Input = (props: InputProps) => {
+  const { inputIcon, label, placeholder, inputMode, maxLength, password } = props
   return (
     <>
       <Text className="text-xl font-bold text-white">{label}</Text>

@@ -1,13 +1,10 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
 import { Input } from "../components/UI/input";
 import { Button } from "../components/UI/Button";
-import { ICON_LOGO_URL } from "../constants/images";
 
-const Login = () => {
-    const image = "../../assets/icon.png"
+const LoginScreen = () => {
     return (
         <View className="flex-1 p-8 justify-center items-center bg-black">
             <View className="w-full justify-between p-4 m-4 rounded-md border-2 border-rose-800  items-center bg-black">
@@ -35,4 +32,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginScreen;

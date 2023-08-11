@@ -1,15 +1,13 @@
 import * as React from "react";
-import { View } from "react-native";
+ import { View } from "react-native";
 import Animated, { SlideInDown } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
 import { IconAdicionar } from "../UI/IconAdicionar";
 
-interface ModalProps {}
-
-export const ModalAdicionar = ({}: ModalProps) => {
+export const ModalAdicionar = () => {
   const { navigate } = useNavigation();
-  const [modalEvents, setModalEvents] = React.useState(false);
+  const [modalEvents, setModalEvents] = React.useState<boolean>(false);
 
   return (
     <View

@@ -1,44 +1,34 @@
 import { useState, useEffect } from "react";
-import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-
-interface FetchResult<T> {
-    data: T | null;
-    loading: boolean;
-    error: AxiosError | unknown;
-}
-
-interface FetchProps {
-    method: AxiosRequestConfig["method"];
-    url: string;
-}
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { FetchProps, FetchResult } from "../utils/types/hooks";
 
 const useFetch = <T,>(req: FetchProps): FetchResult<T> => {
-    const { method, url } = req;
+  const { method, baseURL } = req;
 
-    const [data, setData] = useState<T | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<AxiosError | unknown>(null);
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<AxiosError | unknown>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response: AxiosResponse<T> = await axios({
-                    method,
-                    url,
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error(error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse<T> = await axios({
+          method,
+          baseURL,
+        });
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchData();
-    }, [method, url]);
+    fetchData();
+  }, [method, baseURL]);
 
-    return { data, loading, error };
+  return { data, loading, error };
 };
 
 export default useFetch;
