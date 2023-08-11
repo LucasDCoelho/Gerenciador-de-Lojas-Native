@@ -13,7 +13,7 @@ export const DrawerNavigate = () => {
 
   return (
     <Navigator
-      initialRouteName="Agenda"
+      initialRouteName="Checklist"
       screenOptions={DrawerOptions}
       drawerContent={(props) => <CustomDrawer {...props} />}>
 
@@ -30,7 +30,7 @@ export const DrawerNavigate = () => {
           options={{
             drawerLabel: "Pagina Inicial",
             drawerIcon: ({ size, color }) => (
-              <Icon name="calendar" size={size} color={color} />
+              <Icon name="home" size={size} color={color} />
             ),
           }}
         />

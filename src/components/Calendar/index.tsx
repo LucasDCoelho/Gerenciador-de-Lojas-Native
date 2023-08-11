@@ -16,8 +16,7 @@ export const CalendarEvents = () => {
 
   useEffect(() => {
     data?.map((item) => console.log(item.name));
-    console.error(error);
-  }, []);
+  }, [data]);
 
   return <Agenda ListEmptyComponent={renderEmptyDate} />;
 };

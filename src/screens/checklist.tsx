@@ -1,32 +1,47 @@
-import { Text, View, Image, ScrollView } from "react-native";
-import { ChecklistItens } from "../components/UI/checklist";
+import { useState } from "react";
+import { Text, SafeAreaView, View } from "react-native";
 import { ModalAdicionar } from "../components/Modal";
+import moment from "moment";
+import "moment/locale/pt-br";
+import { Dropdown } from "../components/UI/dropdown";
+import { Task } from "../utils/types/checklist";
 
 const ChecklistScreen = () => {
-  return (
-    <View className="flex-1 justify-center items-center px-4 bg-slate-800">
-      <Text className="text-3xl font-semibold mb-4 text-white">Novembro</Text>
-      <View className="w-full py-4 my-2 items-center justify-center bg-slate-900 rounded-lg">
-        <Text className="text-xl text-white">Primeira semana V</Text>
-      </View>
-      <ChecklistItens
-        date="19/NOV"
-        text="texto importante"
-        color={"bg-red-500"}
-      />
-      <ChecklistItens
-        date="19/NOV"
-        text="texto pouco importante"
-        color={"bg-amber-500"}
-      />
-      <ChecklistItens
-        date="19/NOV"
-        text="texto pouco importante"
-        color={"bg-green-500"}
-      />
-      <ModalAdicionar />
-    </View>
-  );
+    const [taskDay, setTaskDay] = useState<Task[]>([
+        {
+            id: "1",
+            date: moment().format("ddd"),
+            height: 300,
+            name: "algum text1",
+        },
+        {
+            id: "2",
+            date: moment().format("ddd"),
+            height: 300,
+            name: "algum text2",
+        },
+        {
+            id: "3",
+            date: moment().format("ddd"),
+            height: 300,
+            name: "algum text3",
+        },
+    ]);
+
+    moment.locale("pt-br");
+    const Mes = moment().format("MMMM");
+
+    return (
+        <SafeAreaView className="flex-1 justify-start items-start px-2 py-4 bg-slate-800">
+            <Text className="text-3xl font-semibold mb-2 text-white">
+                {Mes}
+            </Text>
+            <Dropdown data={taskDay} label="Hoje" />
+            <Dropdown data={taskDay} label="Futuros" />
+            <Dropdown data={taskDay} label="Concluido Hoje" />
+            <ModalAdicionar />
+        </SafeAreaView>
+    );
 };
 
-export default ChecklistScreen
+export default ChecklistScreen;

@@ -22,7 +22,7 @@ export const Routes = () => {
       <Screen 
         component={EventScreen}
         name="events"
-        options={{ animation: "slide_from_bottom" }}
+        options={{ animation: "slide_from_bottom", gestureEnabled:true, presentation:'modal'  }}
       />
 
     </Navigator>

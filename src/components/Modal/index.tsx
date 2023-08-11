@@ -11,8 +11,8 @@ export const ModalAdicionar = () => {
 
   return (
     <View
-      className={`z-10 absolute bottom-0 w-full ${
-        modalEvents ? "h-full" : "h-0"
+      className={`z-50 absolute bottom-0 w-screen ${
+        modalEvents ? "h-screen" : "h-0"
       }`}>
       {modalEvents ? (
         <View className={`z-30 absolute w-full h-full bg-[#00000070]`}>
