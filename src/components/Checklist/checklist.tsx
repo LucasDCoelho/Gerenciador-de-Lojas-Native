@@ -8,8 +8,10 @@ import { ChecklistItensProps } from "../../utils/types/checklist";
 
 
 
-export const ChecklistItens = ({ color, date, text }: ChecklistItensProps) => {
-    const [value, setValue] = useState<boolean>(false);
+export const ChecklistItens = ({ color, date, text, isCheck }: ChecklistItensProps) => {
+    
+    const [value, setValue] = useState<boolean>(isCheck!);
+
     return (
         <GestureHandlerRootView className="w-full">
             <Swipeable renderRightActions={renderRightActions}>

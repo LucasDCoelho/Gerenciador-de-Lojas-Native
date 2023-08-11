@@ -9,4 +9,5 @@ export interface FetchResult<T> {
 export interface FetchProps {
     method: AxiosRequestConfig["method"];
     baseURL: string;
+    data?: unknown;
 }

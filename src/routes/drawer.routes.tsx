@@ -5,15 +5,15 @@ import Icon from "@expo/vector-icons/Ionicons";
 import { CustomDrawer, DrawerOptions } from "../components/Drawer/customDrawer";
 
 // screens
-import Checklist from "../screens/checklist";
 import AgendaScreen from "../screens/agenda";
+import ChecklistScreen from "../screens/checklist";
 
 export const DrawerNavigate = () => {
   const { Group, Navigator, Screen } = createDrawerNavigator();
 
   return (
     <Navigator
-      initialRouteName="Checklist"
+      initialRouteName="checklist"
       screenOptions={DrawerOptions}
       drawerContent={(props) => <CustomDrawer {...props} />}>
 
@@ -25,7 +25,7 @@ export const DrawerNavigate = () => {
         }}>
 
         <Screen
-          name="Agenda"
+          name="agenda"
           component={AgendaScreen}
           options={{
             drawerLabel: "Pagina Inicial",
@@ -35,8 +35,8 @@ export const DrawerNavigate = () => {
           }}
         />
         <Screen
-          name="Checklist"
-          component={Checklist}
+          name="checklist"
+          component={ChecklistScreen}
           options={{
             drawerLabel: "checklist",
             drawerIcon: ({ size, color }) => (

@@ -7,8 +7,9 @@ import { DropdownProps } from "../../utils/types/checklist";
 
 export const Dropdown = ({ data, label }: DropdownProps) => {
     const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+
     return (
-        <View className={`w-full ${openDropdown?"flex-1":""}`}>
+        <View className={`w-full ${openDropdown ? "flex-1" : ""}`}>
             <Pressable
                 className="flex-row items-center"
                 onPress={() => setOpenDropdown(!openDropdown)}
@@ -21,18 +22,25 @@ export const Dropdown = ({ data, label }: DropdownProps) => {
                     style={{ marginTop: 5 }}
                 />
             </Pressable>
+
             {openDropdown ? (
                 <FlatList
                     data={data}
                     className="w-full"
                     renderItem={({ item }) => (
                         <ChecklistItens
+                            isCheck={item.isCheck}
                             key={item.id}
                             text={item.name}
                             color="bg-red-500"
                             date={item.date}
                         />
                     )}
+                    ListEmptyComponent={
+                        <Text className="text-2xl font-bold text-white">
+                            Nada por enquanto...
+                        </Text>
+                    }
                 />
             ) : null}
         </View>
