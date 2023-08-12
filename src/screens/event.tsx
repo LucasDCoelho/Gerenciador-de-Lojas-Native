@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, SafeAreaView } from "react-native";
 import moment from "moment";
 import axios from "axios";
 import { Button } from "../components/UI/Button";
 import { Task } from "../utils/types/checklist";
+import { GlobalRefreshContext } from "../contexts/taskContext";
 
 const EventScreen: React.FC = () => {
     const { navigate } = useNavigation();
+    const { refresh, setRefresh } = useContext(GlobalRefreshContext)
 
     const [inputValue, setInputValue] = useState<Task>({
         date: moment().format("ddd"),
@@ -24,6 +26,7 @@ const EventScreen: React.FC = () => {
                 inputValue
             );
             navigate('checklist')
+            setRefresh(!refresh)
             console.log("Resposta da API:", response.data);
         } catch (error) {
             console.error("Erro ao enviar os dados:", error);

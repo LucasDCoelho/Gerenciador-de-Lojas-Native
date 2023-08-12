@@ -1,48 +1,48 @@
-import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View } from "react-native";
-import { ModalAdicionar } from "../components/Modal";
+import { useState , useEffect} from 'react'
+import { Text, SafeAreaView, ScrollView } from "react-native";
 import moment from "moment";
-import { Dropdown } from "../components/UI/dropdown";
-import { Task } from "../utils/types/checklist";
-import useFetch from "../Hooks/useFetch";
-import { Button } from "../components/UI/Button";
 
 import "moment/locale/pt-br";
 
-const dados = {
-    id: "0",
-    date: "2024-08-11T08:27:43.506Z",
-    height: 300,
-    name: "adicionar isso",
-};
+import { Dropdown } from "../components/UI/dropdown";
+import { ModalAdicionar } from "../components/Modal";
+import { useTaskContext } from "../contexts/taskContext";
+import { Task } from '../utils/types/checklist';
+
+moment.locale("pt-br");
+const Mes = moment().format("MMMM");
 
 const ChecklistScreen = () => {
-    const { data, error, loading } = useFetch<Task[]>({
-        method: "GET",
-        baseURL: "https://64d677d42a017531bc12abcc.mockapi.io/tasks",
-    });
+  const { events } = useTaskContext()
 
-    const [eventData, setEventData] = useState<Task[]>([]);
+  const [eventToday, setEventToday] = useState<Task[]>([])
+  const [eventFuture, setEventFuture] = useState<Task[]>([])
+  const [eventHistorie, setEventHistorie] = useState<Task[]>([])
 
-    moment.locale("pt-br");
-    const Mes = moment().format("MMMM");
+  
+  useEffect(()=>{
+    const filterCheck = () => {
+      let today = events.filter(item => item.isCheck !== true)
+      let historie = events.filter(item => item.isCheck !== false)
+      console.log() 
+      setEventToday(today)
+      setEventHistorie(historie)
+    }
+    filterCheck()
+  },[events])
 
-    useEffect(() => {
-        setEventData(data!);
-    }, [data]);
 
-    return (
-        <SafeAreaView className="flex-1 justify-start items-start px-2 py-4 bg-slate-800">
-            <Text className="text-3xl font-semibold mb-2 text-white">
-                {Mes}
-            </Text>
-            <Dropdown data={eventData} label="Hoje" />
-            <Dropdown data={eventData} label="Futuros" />
-            <Dropdown data={eventData} label="Concluido Hoje" />
-            {/* <Button Label="Adicionar" onPress={PostData} /> */}
-            <ModalAdicionar />
-        </SafeAreaView>
-    );
+  return (
+    <SafeAreaView className="flex-1 justify-start items-start px-2 py-4 bg-slate-800">
+      <Text className="text-3xl font-semibold mb-2 text-white">{Mes}</Text>
+      <ScrollView className="w-full">
+        <Dropdown data={eventToday} label="Hoje" />
+        <Dropdown data={eventFuture} label="Futuros" />
+        <Dropdown data={eventHistorie} label="Concluidos Hoje" />
+      </ScrollView>
+      <ModalAdicionar />
+    </SafeAreaView>
+  );
 };
 
 export default ChecklistScreen;

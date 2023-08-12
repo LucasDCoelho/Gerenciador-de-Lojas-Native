@@ -1,48 +1,46 @@
-import { useState } from "react";
-import { Text, View, FlatList, Pressable } from "react-native";
 import "moment/locale/pt-br";
-import { ChecklistItens } from "../Checklist/checklist";
+
+import { useState } from "react";
+import { Text, View, Pressable } from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
+
+import { ChecklistItens } from "../Checklist/checklist";
 import { DropdownProps } from "../../utils/types/checklist";
+import { useTaskContext } from "../../contexts/taskContext";
 
 export const Dropdown = ({ data, label }: DropdownProps) => {
-    const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const { DeleteTask, EditTask, handleCheckboxChange } = useTaskContext();
 
-    return (
-        <View className={`w-full ${openDropdown ? "flex-1" : ""}`}>
-            <Pressable
-                className="flex-row items-center"
-                onPress={() => setOpenDropdown(!openDropdown)}
-            >
-                <Text className="text-xl text-white">{label}</Text>
-                <Ionicons
-                    name={openDropdown ? "chevron-down" : "chevron-up"}
-                    size={32}
-                    color={"#ffffff"}
-                    style={{ marginTop: 5 }}
-                />
-            </Pressable>
+  return (
+    <View className={`w-full ${openDropdown ? "h-auto" : ""}`}>
+      <Pressable
+        className="flex-row items-center"
+        onPress={() => setOpenDropdown(!openDropdown)}>
+        <Text className="text-xl text-white">{label}</Text>
+        <Ionicons
+          name={openDropdown ? "chevron-down" : "chevron-up"}
+          size={32}
+          color={"#ffffff"}
+          style={{ marginTop: 5 }}
+        />
+      </Pressable>
 
-            {openDropdown ? (
-                <FlatList
-                    data={data}
-                    className="w-full"
-                    renderItem={({ item }) => (
-                        <ChecklistItens
-                            isCheck={item.isCheck}
-                            key={item.id}
-                            text={item.name}
-                            color="bg-red-500"
-                            date={item.date}
-                        />
-                    )}
-                    ListEmptyComponent={
-                        <Text className="text-2xl font-bold text-white">
-                            Nada por enquanto...
-                        </Text>
-                    }
-                />
-            ) : null}
-        </View>
-    );
+      {openDropdown
+        ? data!.map((item) => (
+            <ChecklistItens
+              key={item.id}
+              date={item.date}
+              color="bg-red-500"
+              text={item.name}
+              isCheck={item.isCheck}
+              onValueChange={() => handleCheckboxChange(item.id)}
+              deleteItem={() => DeleteTask(item.id)}
+              editItem={() => EditTask(item.id)}
+            />
+          ))
+        : null}
+    </View>
+  );
 };
