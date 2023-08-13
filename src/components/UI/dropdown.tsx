@@ -34,11 +34,11 @@ export const Dropdown = ({ data, label }: DropdownProps) => {
       </Pressable>
 
       {openDropdown
-        ? data!.map((item) => (
+        ? data!.slice().reverse().map((item) => (
             <ChecklistItens
               key={item.id}
               date={item.date}
-              color="bg-red-500"
+              color={item.color}
               text={item.name}
               isCheck={item.isCheck}
               onValueChange={() => handleCheckboxChange(item.id)}

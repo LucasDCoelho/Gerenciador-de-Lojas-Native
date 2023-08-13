@@ -28,22 +28,22 @@ export const useTask = () => {
     try {
       const response = await axios.post<Task>(
         "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/",
-        { name: inputValue, date: moment().calendar(), isCheck: inputCheck }
+        { ...events, name: inputValue, date: moment().format(), isCheck: inputCheck, color:'black'}
       );
       setEvents([...events, response.data]);
-      setInputValue("")
+      setInputValue("");
       console.log("criada nova task = ", response.data);
     } catch (err) {
       console.error(err);
     }
   };
 
-// editar eventos
-const EditTask = async (id: string, newName: string) => {
+  // editar eventos
+const EditTask = async (id: string, newName: string, newColor: string, newDateAndTime: string) => {
   try {
     const updatedTasks = events.map((item) => {
       if (item.id === id) {
-        return { ...item, name: newName, isCheck: inputCheck };
+        return { ...item, name: newName, color: newColor, date: newDateAndTime, isCheck: inputCheck };
       }
       return item;
     });
@@ -67,15 +67,15 @@ const EditTask = async (id: string, newName: string) => {
       await axios.delete(
         `https://64d536d6b592423e469544ad.mockapi.io/task/tasks/${id}`
       );
-
       const updatedTasks = events.filter((item) => item.id !== id);
       setEvents(updatedTasks);
-      console.log("Tarefa excluída com sucesso");
     } catch (error) {
       console.error(error);
     }
   };
 
+
+  // verificar Checkbox
   const handleCheckboxChange = (taskId: string) => {
     const updatedTasks = events.map((task) => {
       if (task.id === taskId) {

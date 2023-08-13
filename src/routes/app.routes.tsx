@@ -24,6 +24,10 @@ export const Routes = () => {
           component={EventScreen}
           name="events"
           options={{
+            headerShown:true,
+            headerStyle:{
+              backgroundColor:"#881337"
+            },
             animation: "slide_from_bottom",
             gestureEnabled: true,
             presentation: "transparentModal",

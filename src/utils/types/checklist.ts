@@ -1,7 +1,8 @@
 import { CalendarEventsProps } from "./agenda";
 
 export interface Task extends CalendarEventsProps {
-  isCheck?: boolean;
+  isCheck: boolean;
+  color:string;
 }
 export interface DropdownProps {
   data: Task[] | null;

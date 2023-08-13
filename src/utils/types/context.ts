@@ -12,7 +12,7 @@ export interface ContextProps {
 export interface taskContextProps {
   createTask: () => Promise<void>;
   DeleteTask: (id: string) => Promise<void>;
-  EditTask: (id: string, newName: string) => Promise<void>
+  EditTask: (id: string, newName: string, newColor: string, newDateAndTime: string) => Promise<void>
   events: Task[];
   handleCheckboxChange: (taskId: string) => void;
   setEvents: React.Dispatch<React.SetStateAction<Task[]>>;
