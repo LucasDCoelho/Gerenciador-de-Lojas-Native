@@ -1,20 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useTask } from "../Hooks/useTask";
-import { ContextProps } from "../utils/types/context";
-import { Task } from "../utils/types/checklist";
-
-interface taskContextProps {
-  createTask: () => Promise<void>;
-  DeleteTask: (id: string) => Promise<void>;
-  EditTask: (id: string) => Promise<void>;
-  events: Task[];
-  handleCheckboxChange: (taskId: string) => void;
-  setEvents: React.Dispatch<React.SetStateAction<Task[]>>;
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  inputCheck: boolean;
-  setInputCheck: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { ContextProps, taskContextProps } from "../utils/types/context";
 
 const TaskContext = createContext({} as taskContextProps);
 

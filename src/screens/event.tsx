@@ -1,74 +1,43 @@
-import React, { useState, useContext } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import React, { useState, useContext, useEffect } from "react";
 import { View, Text, TextInput, SafeAreaView } from "react-native";
-import moment from "moment";
-import axios from "axios";
-import { Button } from "../components/UI/Button";
+import { useTaskContext } from "../contexts/taskContext";
 import { Task } from "../utils/types/checklist";
-import { GlobalRefreshContext } from "../contexts/taskContext";
+
+interface RoutesParam {
+  taskId: string;
+}
 
 const EventScreen: React.FC = () => {
-    const { navigate } = useNavigation();
-    const { refresh, setRefresh } = useContext(GlobalRefreshContext)
+  const { params } = useRoute<RouteProp<Record<string, RoutesParam>>>();
+  const { EditTask, events } = useTaskContext();
+  const [event, setEvent] = useState<Task[]>([]);
 
-    const [inputValue, setInputValue] = useState<Task>({
-        date: moment().format("ddd"),
-        height: 800,
-        id: "0",
-        name: "",
-        isCheck: false,
-    });
+  useEffect(() => {
+    console.log(params.taskId);
 
-    const createEvent = async () => {
-        try {
-            const response = await axios.post(
-                "https://64d677d42a017531bc12abcc.mockapi.io/tasks",
-                inputValue
-            );
-            navigate('checklist')
-            setRefresh(!refresh)
-            console.log("Resposta da API:", response.data);
-        } catch (error) {
-            console.error("Erro ao enviar os dados:", error);
-        }
+    const filter = (id: string) => {
+      const UpdateEvent = events.filter((item) => item.id === id);
+      setEvent(UpdateEvent);
     };
+    filter(params.taskId);
+    // EditTask(params?.taskId, "HELLO")
+  }, []);
 
-    const handleInputChange = (name: keyof Task, value: any) => {
-        setInputValue((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    return (
-        <SafeAreaView
-            style={{
-                flex: 1,
-                paddingHorizontal: 4,
-                paddingTop: 10,
-                alignItems: "center",
-                backgroundColor: "white",
-            }}
-        >
-            <View style={{ width: "100%" }}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                    Titulo do Evento
-                </Text>
-                <TextInput
-                    style={{
-                        borderWidth: 2,
-                        borderColor: "white",
-                        marginTop: 4,
-                        borderRadius: 4,
-                        padding: 8,
-                    }}
-                    placeholder="Nome do Evento"
-                    onChangeText={(value) => handleInputChange("name", value)}
-                />
-                <Button Label="Criar Evento" onPress={createEvent} />
-            </View>
-        </SafeAreaView>
-    );
+  return (
+    <View className="flex-1 justify-center items-center bg-slate-800">
+      {event.map((item) => {
+        return (
+          <View>
+            <Text className="text-white text-4xl">{item.id}</Text>
+            <Text className="text-white text-4xl">{item.name}</Text>
+            <Text className="text-white text-4xl">{item.date}</Text>
+            <Text className="text-white text-4xl">{item.isCheck}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 };
 
 export default EventScreen;

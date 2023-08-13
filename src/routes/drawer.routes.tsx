@@ -13,39 +13,37 @@ export const DrawerNavigate = () => {
   const { Group, Navigator, Screen } = createDrawerNavigator();
 
   return (
-    <TaskProvider>
-      <Navigator
-        initialRouteName="checklist"
-        screenOptions={DrawerOptions}
-        drawerContent={(props) => <CustomDrawer {...props} />}>
-        <Group
-          screenOptions={{
-            drawerLabelStyle: { marginLeft: -20 },
-            drawerActiveBackgroundColor: "#881337",
-            drawerActiveTintColor: "#ffffff",
-          }}>
-          <Screen
-            name="agenda"
-            component={AgendaScreen}
-            options={{
-              drawerLabel: "Pagina Inicial",
-              drawerIcon: ({ size, color }) => (
-                <Icon name="home" size={size} color={color} />
-              ),
-            }}
-          />
-          <Screen
-            name="checklist"
-            component={ChecklistScreen}
-            options={{
-              drawerLabel: "checklist",
-              drawerIcon: ({ size, color }) => (
-                <Icon name="clipboard-sharp" size={size} color={color} />
-              ),
-            }}
-          />
-        </Group>
-      </Navigator>
-    </TaskProvider>
+    <Navigator
+      initialRouteName="checklist"
+      screenOptions={DrawerOptions}
+      drawerContent={(props) => <CustomDrawer {...props} />}>
+      <Group
+        screenOptions={{
+          drawerLabelStyle: { marginLeft: -20 },
+          drawerActiveBackgroundColor: "#881337",
+          drawerActiveTintColor: "#ffffff",
+        }}>
+        <Screen
+          name="agenda"
+          component={AgendaScreen}
+          options={{
+            drawerLabel: "Pagina Inicial",
+            drawerIcon: ({ size, color }) => (
+              <Icon name="home" size={size} color={color} />
+            ),
+          }}
+        />
+        <Screen
+          name="checklist"
+          component={ChecklistScreen}
+          options={{
+            drawerLabel: "checklist",
+            drawerIcon: ({ size, color }) => (
+              <Icon name="clipboard-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+      </Group>
+    </Navigator>
   );
 };

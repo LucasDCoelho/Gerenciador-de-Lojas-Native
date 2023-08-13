@@ -2,6 +2,7 @@ import "moment/locale/pt-br";
 
 import { useState } from "react";
 import { Text, View, Pressable } from "react-native";
+import { useNavigation } from '@react-navigation/native'
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -10,8 +11,13 @@ import { DropdownProps } from "../../utils/types/checklist";
 import { useTaskContext } from "../../contexts/taskContext";
 
 export const Dropdown = ({ data, label }: DropdownProps) => {
+  const { navigate } = useNavigation()
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
-  const { DeleteTask, EditTask, handleCheckboxChange } = useTaskContext();
+  const { DeleteTask, handleCheckboxChange } = useTaskContext();
+
+  const EditarItem = (params: string) =>{
+    navigate("events", {taskId: params})
+  }
 
   return (
     <View className={`w-full ${openDropdown ? "h-auto" : ""}`}>
@@ -37,7 +43,7 @@ export const Dropdown = ({ data, label }: DropdownProps) => {
               isCheck={item.isCheck}
               onValueChange={() => handleCheckboxChange(item.id)}
               deleteItem={() => DeleteTask(item.id)}
-              editItem={() => EditTask(item.id)}
+              editItem={()=> EditarItem(item.id)}
             />
           ))
         : null}

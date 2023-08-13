@@ -6,7 +6,9 @@ export declare global {
             login: undefined;
             lojas: undefined;
             notFound: undefined;
-            events: undefined;
+            events: {
+                taskId: string;
+            };
             checklist: undefined;
         }
     }

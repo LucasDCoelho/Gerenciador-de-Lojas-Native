@@ -28,37 +28,38 @@ export const useTask = () => {
     try {
       const response = await axios.post<Task>(
         "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/",
-        { name: inputValue, date: moment().calendar(), isCheck:inputCheck }
+        { name: inputValue, date: moment().calendar(), isCheck: inputCheck }
       );
       setEvents([...events, response.data]);
-      console.log(response.data);
+      setInputValue("")
+      console.log("criada nova task = ", response.data);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // editar eventos
-  const EditTask = async (id: string) => {
-    try {
-      const updatedTasks = events.map((item) => {
-        if (item.id === id) {
-          return { ...item, name: inputValue, isCheck: inputCheck };
-        }
-        return item;
-      });
-  
-      await axios.put(
-        `https://64d536d6b592423e469544ad.mockapi.io/task/tasks/${id}`,
-        updatedTasks.find((task) => task.id === id)
-      );
-  
-      setEvents(updatedTasks);
-      console.log("Tarefa atualizada com sucesso");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
+// editar eventos
+const EditTask = async (id: string, newName: string) => {
+  try {
+    const updatedTasks = events.map((item) => {
+      if (item.id === id) {
+        return { ...item, name: newName, isCheck: inputCheck };
+      }
+      return item;
+    });
+
+    await axios.put(
+      `https://64d536d6b592423e469544ad.mockapi.io/task/tasks/${id}`,
+      updatedTasks.find((task) => task.id === id)
+    );
+
+    setEvents(updatedTasks);
+    console.log("Tarefa atualizada com sucesso");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   // deletar eventos
   const DeleteTask = async (id: string) => {
@@ -82,10 +83,9 @@ export const useTask = () => {
       }
       return task;
     });
-  
+
     setEvents(updatedTasks);
   };
-  
 
   return {
     createTask,
@@ -97,6 +97,6 @@ export const useTask = () => {
     inputValue,
     setInputValue,
     inputCheck,
-    setInputCheck
+    setInputCheck,
   };
 };
