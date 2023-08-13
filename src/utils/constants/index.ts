@@ -1,4 +1,4 @@
-export const calendarTheme:any = {
+export const calendarTheme = {
   backgroundColor: '#000',
   calendarBackground: '#ffffff',
   textSectionTitleColor: '#333333',
