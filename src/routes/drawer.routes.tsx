@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Icon from "@expo/vector-icons/Ionicons";
+import Icon from "@expo/vector-icons/FontAwesome5";
 
 // layout
 import { CustomDrawer, DrawerOptions } from "../components/Drawer/customDrawer";
@@ -7,7 +7,6 @@ import { CustomDrawer, DrawerOptions } from "../components/Drawer/customDrawer";
 // screens
 import AgendaScreen from "../screens/agenda";
 import ChecklistScreen from "../screens/checklist";
-import { TaskProvider } from "../contexts/taskContext";
 
 export const DrawerNavigate = () => {
   const { Group, Navigator, Screen } = createDrawerNavigator();
@@ -39,7 +38,7 @@ export const DrawerNavigate = () => {
           options={{
             drawerLabel: "checklist",
             drawerIcon: ({ size, color }) => (
-              <Icon name="clipboard-sharp" size={size} color={color} />
+              <Icon name="clipboard-list" size={size} color={color} />
             ),
           }}
         />
