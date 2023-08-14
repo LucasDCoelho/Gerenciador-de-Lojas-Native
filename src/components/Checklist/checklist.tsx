@@ -31,10 +31,7 @@ export const ChecklistItens = (props: ChecklistItensProps) => {
         <>
             <GestureHandlerRootView className="w-full">
                 <Swipeable renderRightActions={renderRightActions}>
-                    <Reanimated.View
-                        entering={LightSpeedInLeft}
-                        exiting={LightSpeedOutRight}
-                    >
+                    <Reanimated.View entering={LightSpeedInLeft} exiting={LightSpeedOutRight}>
                         <Pressable
                             className="relative w-full px-2 py-4 justify-center bg-slate-200 shadow-lg shadow-black my-1 rounded-lg"
                             onPress={editItem}

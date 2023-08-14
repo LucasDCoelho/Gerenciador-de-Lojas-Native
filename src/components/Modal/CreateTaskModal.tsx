@@ -94,21 +94,3 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
         );
     } else return null;
 };
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    dropdownContainer: {
-        width: 200,
-    },
-    dropdown: {
-        backgroundColor: "#fafafa",
-        borderWidth: 1,
-        borderColor: "#ccc",
-    },
-    dropdownItem: {
-        justifyContent: "flex-start",
-    },
-});
