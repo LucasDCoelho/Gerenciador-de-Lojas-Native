@@ -1,44 +1,56 @@
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { DrawerNavigate } from "./Drawer";
-import Login from "../screens/login";
-import { Event } from "../screens/home/event";
+// layout
+import { DrawerNavigate } from "./drawer.routes";
+// screens
+import LoginScreen from "../screens/login";
 import { AuthProvider, useAuth } from "../hooks/useAuth";
-import { Checklist } from "../screens/home/checklist";
+import EventScreen from "../screens/event";
+import { TaskProvider } from "../contexts/taskContext";
 
 const Stack = createNativeStackNavigator();
 
 const PrivateRoute = () => {
   const { user } = useAuth()
-
+  const { Group, Navigator, Screen } = createNativeStackNavigator();
   return (
-    <>
-      <Stack.Navigator
-        initialRouteName={user ? "home" : "login"}>
+    <Navigator initialRouteName={user ? "home" : "login"} screenOptions={{ headerShown: false }}>
+      {/* inicial rote */}
+      <Screen component={LoginScreen} name="login" />
 
-        <Stack.Screen name="login" component={Login} />
+      {/* drawer routes */}
+      <Screen component={DrawerNavigate} name="home" />
 
-        <Stack.Screen component={DrawerNavigate} name="home" />
-        
-        <Stack.Screen
-          component={Event}
-          name="events"
-          options={{ animation: "slide_from_bottom" }} />
-      </Stack.Navigator>
-    </>
+      {/* others screens */}
+      <Screen
+        component={EventScreen}
+        name="events"
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#881337"
+          },
+          animation: "slide_from_bottom",
+          gestureEnabled: true,
+          presentation: "transparentModal",
+        }}
+      />
+    </Navigator>
   );
 }
 
 export const Routes = () => {
-  return(
+  return (
     <AuthProvider>
-      <Stack.Navigator
-        initialRouteName="PrivateRoute"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="PrivateRoute" component={PrivateRoute}/>
-      </Stack.Navigator>
+      <TaskProvider>
+        <Stack.Navigator
+          initialRouteName="PrivateRoute"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="PrivateRoute" component={PrivateRoute} />
+        </Stack.Navigator>
+      </TaskProvider>
     </AuthProvider>
   );
 

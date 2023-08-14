@@ -1,19 +1,9 @@
 import { useState, useEffect } from "react";
-import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-
-interface FetchResult<T> {
-    data: T | null;
-    loading: boolean;
-    error: AxiosError | unknown;
-}
-
-interface FetchProps {
-    method: AxiosRequestConfig["method"];
-    url: string;
-}
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { FetchProps, FetchResult } from "../utils/types/hooks";
 
 const useFetch = <T,>(req: FetchProps): FetchResult<T> => {
-    const { method, url } = req;
+    const { method, baseURL, data: requestData } = req;
 
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
@@ -24,7 +14,8 @@ const useFetch = <T,>(req: FetchProps): FetchResult<T> => {
             try {
                 const response: AxiosResponse<T> = await axios({
                     method,
-                    url,
+                    baseURL,
+                    data: requestData
                 });
                 setData(response.data);
             } catch (error) {
@@ -36,7 +27,7 @@ const useFetch = <T,>(req: FetchProps): FetchResult<T> => {
         };
 
         fetchData();
-    }, [method, url]);
+    }, [requestData]);
 
     return { data, loading, error };
 };

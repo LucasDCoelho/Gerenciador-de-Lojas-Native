@@ -10,15 +10,15 @@ import { Input } from "../components/UI/input";
 import { Button } from "../components/UI/Button";
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
-const Login = () => {
+const LoginScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
   const { signIn, isValidEmail, isUserValid } = useAuth()
   const navigation = useNavigation()
-  
 
-  const handleSignIn: ()=> Promise<void> = async () => {
+
+  const handleSignIn: () => Promise<void> = async () => {
     setError(null)
 
     try {
@@ -27,16 +27,16 @@ const Login = () => {
         return;
       }
 
-      if(!isValidEmail(email)){
+      if (!isValidEmail(email)) {
         setError("Por favor insira um email válido.")
         return;
       }
 
-      if(!isUserValid(email, password)){
+      if (!isUserValid(email, password)) {
         setError("Usuário não encontrado.")
         return;
       }
-      
+
 
       await signIn(email, password)
       navigation.navigate("home")
@@ -46,7 +46,7 @@ const Login = () => {
     }
   }
 
-  
+
   const handleError = (error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
     if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
       setError("Usuário ou senha incorretos");
@@ -56,8 +56,8 @@ const Login = () => {
       setError("Ocorreu um erro em fazer o login. Tente novamente mais tarde.");
     }
   }
-  
-  
+
+
   return (
     <View className="flex-1 p-8 justify-center items-center bg-black">
       <View className="w-full justify-between p-4 m-4 rounded-md border-2 border-rose-800  items-center bg-black">
@@ -82,16 +82,17 @@ const Login = () => {
             value={password}
             changeText={setPassword}
           />
-        </View>
-        <Button
-          Label="Entrar"
-          onPress={handleSignIn}
-        />
+          <Button
+            Label="Entrar"
+            onPress={handleSignIn}
+          />
 
-        {error && <Text className="text-red-500 mt-2">{error}</Text>}
+          {error && <Text className="text-red-500 mt-2">{error}</Text>}
+        </View>
       </View>
     </View>
   );
 };
 
-export default Login;
+
+export default LoginScreen;

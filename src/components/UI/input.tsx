@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React, { useState} from 'react'
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5"
 import { StyledComponent } from 'nativewind';
+=======
+import React from 'react'
+import { FontAwesome5 } from '@expo/vector-icons'
+>>>>>>> b68538666caa0d2f22db8cfa1e37313a1c84d9d8
 import { Text, View, TextInput, InputModeOptions } from "react-native";
 
 interface InputProps {
@@ -14,8 +19,13 @@ interface InputProps {
   changeText: (text: string) => void;
 }
 
+<<<<<<< HEAD
 export const Input = ({ label, inputIcon, inputMode, placeholder, maxLength, password, value, changeText }: InputProps) => {
 
+=======
+export const Input = (props: InputProps) => {
+  const { inputIcon, label, placeholder, inputMode, maxLength, password } = props
+>>>>>>> b68538666caa0d2f22db8cfa1e37313a1c84d9d8
   return (
     <>
       <Text className="text-xl font-bold text-white">{label}</Text>
