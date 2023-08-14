@@ -78,7 +78,6 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         <DrawerItemCostumer
           label="Logout"
           onPress={handleSignOut}
-          onPress={() => navigate("login")}
           nameIcon={"sign-out-alt"}
         />
       </View>

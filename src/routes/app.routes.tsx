@@ -5,26 +5,28 @@ import { DrawerNavigate } from "./Drawer";
 import Login from "../screens/login";
 import { Event } from "../screens/home/event";
 import { AuthProvider, useAuth } from "../hooks/useAuth";
+import { Checklist } from "../screens/home/checklist";
 
 const Stack = createNativeStackNavigator();
 
 const PrivateRoute = () => {
   const { user } = useAuth()
-import { Checklist } from "../screens/home/checklist";
 
   return (
-    <Stack.Navigator
-      initialRouteName={user ? "home" : "login"}
-      <Stack.Screen  name="login">
-      </Stack.Screen>
-      
-      <Stack.Screen component={DrawerNavigate} name="home" />
-      <Stack.Screen
-        component={Event}
-        name="events"
-        options={{animation: "slide_from_bottom" }}
-      />
-    </Stack.Navigator>
+    <>
+      <Stack.Navigator
+        initialRouteName={user ? "home" : "login"}>
+
+        <Stack.Screen name="login" component={Login} />
+
+        <Stack.Screen component={DrawerNavigate} name="home" />
+        
+        <Stack.Screen
+          component={Event}
+          name="events"
+          options={{ animation: "slide_from_bottom" }} />
+      </Stack.Navigator>
+    </>
   );
 }
 
