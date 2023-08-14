@@ -1,102 +1,122 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Task } from "../utils/types/checklist";
-import moment from "moment";
+import { useStore } from "./useStore";
 
 export const useTask = () => {
-  const [events, setEvents] = useState<Task[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [inputCheck, setInputCheck] = useState<boolean>(false);
+    const {
+        colorValue,
+        dateValue,
+        events,
+        inputCheck,
+        inputValue,
+        setEvents,
+        setInputValue,
+    } = useStore();
 
-  // visualizar lista
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const response = await axios.get(
-          "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/"
-        );
-        setEvents(response.data);
-      } catch (error) {
-        console.error(error);
-      }
+    // visualizar lista
+    useEffect(() => {
+        const getEvents = async () => {
+            try {
+                const response = await axios.get(
+                    "https://64d677d42a017531bc12abcc.mockapi.io/tasks/"
+                );
+                setEvents(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getEvents();
+    }, [setEvents]);
+
+
+    // criar eventos
+    const createTask = async () => {
+        try {
+            const response = await axios.post<Task>(
+                "https://64d677d42a017531bc12abcc.mockapi.io/tasks/",
+                {
+                    ...events,
+                    name: inputValue,
+                    date: dateValue,
+                    isCheck: inputCheck,
+                    color: colorValue,
+                }
+            );
+            setEvents([...events, response.data]);
+            setInputValue("");
+        } catch (err) {
+            console.error(err);
+        }
     };
-    getEvents();
-  }, [setEvents]);
-
-  // criar eventos
-  const createTask = async () => {
-    try {
-      const response = await axios.post<Task>(
-        "https://64d536d6b592423e469544ad.mockapi.io/task/tasks/",
-        { ...events, name: inputValue, date: moment().format(), isCheck: inputCheck, color:'black'}
-      );
-      setEvents([...events, response.data]);
-      setInputValue("");
-      console.log("criada nova task = ", response.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // editar eventos
-const EditTask = async (id: string, newName: string, newColor: string, newDateAndTime: string) => {
-  try {
-    const updatedTasks = events.map((item) => {
-      if (item.id === id) {
-        return { ...item, name: newName, color: newColor, date: newDateAndTime, isCheck: inputCheck };
-      }
-      return item;
-    });
-
-    await axios.put(
-      `https://64d536d6b592423e469544ad.mockapi.io/task/tasks/${id}`,
-      updatedTasks.find((task) => task.id === id)
-    );
-
-    setEvents(updatedTasks);
-    console.log("Tarefa atualizada com sucesso");
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 
-  // deletar eventos
-  const DeleteTask = async (id: string) => {
-    try {
-      await axios.delete(
-        `https://64d536d6b592423e469544ad.mockapi.io/task/tasks/${id}`
-      );
-      const updatedTasks = events.filter((item) => item.id !== id);
-      setEvents(updatedTasks);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    // editar eventos
+    const EditTask = async (
+        id: string,
+        newName: string,
+        newColor: string,
+        newDateAndTime: string
+    ) => {
+        try {
+            const updatedTasks = events.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        name: newName,
+                        color: newColor,
+                        date: newDateAndTime,
+                        isCheck: inputCheck,
+                    };
+                }
+                return item;
+            });
 
+            await axios.put(
+                `https://64d677d42a017531bc12abcc.mockapi.io/tasks/${id}`,
+                updatedTasks.find((task) => task.id === id)
+            );
+            setEvents(updatedTasks);
+            console.log("Tarefa atualizada com sucesso");
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-  // verificar Checkbox
-  const handleCheckboxChange = (taskId: string) => {
-    const updatedTasks = events.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, isCheck: !task.isCheck };
-      }
-      return task;
-    });
+    
+    // deletar eventos
+    const DeleteTask = async (id: string) => {
+        try {
+            await axios.delete(
+                `https://64d677d42a017531bc12abcc.mockapi.io/tasks/${id}`
+            );
+            const updatedTasks = events.filter((item) => item.id !== id);
+            setEvents(updatedTasks);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    setEvents(updatedTasks);
-  };
+    // verificar Checkbox
+    const handleCheckboxChange = async (taskId: string) => {
+        const updatedTasks = events.map((task) => {
+            if (task.id === taskId) {
+                return { ...task, isCheck: !task.isCheck };
+            }
+            return task;
+        });
+        await axios.put(
+            `https://64d677d42a017531bc12abcc.mockapi.io/tasks/${taskId}`,
+            updatedTasks.find((task) => task.id === taskId)
+        );
+        setEvents(updatedTasks);
+    };
 
-  return {
-    createTask,
-    DeleteTask,
-    handleCheckboxChange,
-    EditTask,
-    events,
-    setEvents,
-    inputValue,
-    setInputValue,
-    inputCheck,
-    setInputCheck,
-  };
+    return {
+        createTask,
+        DeleteTask,
+        handleCheckboxChange,
+        EditTask,
+        useStore,
+    };
 };

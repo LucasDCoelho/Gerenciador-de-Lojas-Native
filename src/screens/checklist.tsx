@@ -13,7 +13,9 @@ import { Task } from "../utils/types/checklist";
 const ChecklistScreen = () => {
   
   const Mes = moment().format("MMMM");
-  const { events } = useTaskContext();
+  const { useStore } = useTaskContext();
+
+  const { events } = useStore()
 
   const [eventToday, setEventToday] = useState<Task[]>([]);
   const [eventFuture, setEventFuture] = useState<Task[]>([]);

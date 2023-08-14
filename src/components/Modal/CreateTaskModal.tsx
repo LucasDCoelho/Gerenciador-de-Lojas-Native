@@ -1,51 +1,114 @@
-import { useEffect, useState } from "react";
-import {
-  Pressable,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { useState, useEffect } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
+
+import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Button } from "../UI/Button";
 import { useTaskContext } from "../../contexts/taskContext";
 
 interface EditModalProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
-  const { createTask, inputValue, setInputValue } = useTaskContext()
-  
-  if (open) {
-    return (
-      <>
-        <TouchableOpacity
-          className="z-40 absolute  border-white w-screen h-screen bottom-0 left-0 justify-end bg-[#00000060]"
-          onPress={() => setOpen(!open)}
-        />
-        <View className="z-50 absolute w-screen h-auto bottom-0 px-2 py-4 rounded-t-2xl bg-slate-600">
-          <TextInput
-            className="w-full border-2 px-4 py-6 rounded-2xl text-white border-white"
-            defaultValue={inputValue}
-            onChangeText={(e)=> setInputValue(e)}
-            autoFocus
-            placeholder="nova tarefa"
-          />
-          <View className="flex-row">
-            <Pressable className="mt-3 w-auto active:bg-red-500 text-md bg-white px-2 py-1 rounded-lg">
-              <Text>sem categorias</Text>
-            </Pressable>
-            <Pressable className="mt-3 ml-2 active:bg-slate-500 w-auto text-md bg-white px-2 py-1 rounded-lg">
-              <Text>cor</Text>
-            </Pressable>
-            <Pressable className="mt-3 ml-2 active:bg-slate-500 w-auto text-md bg-white px-2 py-1 rounded-lg">
-              <Text>sub-categoria</Text>
-            </Pressable>
-          </View>
-          <Button Label="Criar tarefa" onPress={createTask}/>
-        </View>
-      </>
-    );
-  } else return null;
+    const { createTask, useStore } = useTaskContext();
+    const { inputValue, setInputValue, setColorValue } = useStore();
+
+    const [openCategoria, setOpenCategoria] = useState(false);
+    const [openColor, setOpenColor] = useState(false);
+
+    const [valueColor, setValueColor] = useState<string>("");
+    const [valueCategoria, setValueCategoria] = useState<string>("");
+
+    const [cores, setCores] = useState([
+        { label: "Alert", value: "#facc15" },
+        { label: "Multa", value: "#dc2626" },
+        { label: "Tarefa", value: "#a3e635" },
+    ]);
+    const [categorias, setCategorias] = useState([
+        { label: "Dinheiro", value: "#facc15" },
+        { label: "Compras", value: "#dc2626" },
+        { label: "Produto", value: "#a3e635" },
+    ]);
+
+    useEffect(() => {
+        setColorValue(valueColor!);
+    }, [valueColor]);
+
+    if (open) {
+        return (
+            <>
+                <TouchableOpacity
+                    className="z-40 absolute  border-white w-screen h-screen bottom-0 left-0 justify-end bg-[#00000060]"
+                    onPress={() => setOpen(!open)}
+                />
+                <View className="z-50 absolute w-screen h-auto bottom-0 px-2 py-4 rounded-t-2xl bg-slate-600">
+                    <TextInput
+                        autoFocus
+                        defaultValue={inputValue}
+                        placeholder="nova tarefa"
+                        onChangeText={(e) => setInputValue(e)}
+                        className="w-full border-2 px-4 py-6 rounded-2xl text-white border-white"
+                    />
+                    <View className="flex-row">
+                    <DropDownPicker
+                            open={openCategoria}
+                            value={valueCategoria}
+                            items={categorias}
+                            placeholder="Categorias"
+                            dropDownDirection="TOP"
+                            setOpen={setOpenCategoria}
+                            containerStyle={{
+                                paddingVertical: 5,
+                                marginRight:5,
+                                width: "50%",
+                            }}
+                            setValue={setValueCategoria}
+                            setItems={setCategorias}
+                        />
+                        <DropDownPicker
+                            open={openColor}
+                            value={valueColor}
+                            addCustomItem
+                            items={cores}
+                            placeholder="Colors"
+                            setOpen={setOpenColor}
+                            setValue={setValueColor}
+                            setItems={setCores}
+                            dropDownDirection="TOP"
+                            containerStyle={{
+                                paddingVertical: 5,
+                                
+                                width: "25%",
+                            }}
+                        />
+                        
+                    </View>
+                    <Button
+                        Label="Criar tarefa"
+                        onPress={createTask}
+                        className="m-0"
+                    />
+                </View>
+            </>
+        );
+    } else return null;
 };
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    dropdownContainer: {
+        width: 200,
+    },
+    dropdown: {
+        backgroundColor: "#fafafa",
+        borderWidth: 1,
+        borderColor: "#ccc",
+    },
+    dropdownItem: {
+        justifyContent: "flex-start",
+    },
+});

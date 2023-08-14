@@ -5,15 +5,6 @@ import Animated, {
   RotateInDownLeft,
 } from "react-native-reanimated";
 
-interface IconAdicionarProps {
-  label?: string;
-  nameIcon: string;
-  sizeIcon: number;
-  colorIcon: string;
-  colorButton?: string;
-  onPress?: () => void;
-}
-
 export const IconAdicionar = (props: IconAdicionarProps) => {
   const { colorIcon, nameIcon, sizeIcon, colorButton, label, onPress } = props;
   return (
