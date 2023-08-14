@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth"
 
 import { User, ValidEmail } from "../types/Authenticate";
