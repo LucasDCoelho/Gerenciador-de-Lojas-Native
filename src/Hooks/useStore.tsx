@@ -9,7 +9,7 @@ export const useEventStore = create<useEventStoreProps>((set) => ({
     inputValue: "",
     inputCheck: false,
     colorValue: "#000000",
-    dateValue: moment().format(),
+    dateValue: new Date,
     
     // dispatch
     setEvents: (newEvents) => set({ events: newEvents }),

@@ -6,7 +6,7 @@ export interface DataEventProps {
 
 export interface CalendarEventsProps {
     id: string;
-    date: string;
+    date: Date;
     name: string;
     height: number;
 }

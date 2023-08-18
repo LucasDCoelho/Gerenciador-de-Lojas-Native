@@ -12,7 +12,7 @@ export interface DropdownProps {
 export interface ChecklistItensProps {
   color: string;
   text: string;
-  date: string;
+  date: Date;
   isCheck?: boolean;
   onValueChange: () => void;
   deleteItem: () => void;

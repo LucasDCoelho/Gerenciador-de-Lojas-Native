@@ -32,7 +32,7 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
     ]);
 
     useEffect(() => {
-        setColorValue(valueColor!);
+        setColorValue(valueColor? valueColor : '#000000');
     }, [valueColor]);
 
     if (open) {
@@ -78,7 +78,6 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
                             dropDownDirection="TOP"
                             containerStyle={{
                                 paddingVertical: 5,
-                                
                                 width: "25%",
                             }}
                         />
