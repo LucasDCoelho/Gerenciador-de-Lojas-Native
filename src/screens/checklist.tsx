@@ -4,8 +4,8 @@ import "moment/locale/pt-br";
 import { useState, useEffect } from "react";
 import { Text, SafeAreaView, ScrollView } from "react-native";
 
-import { Dropdown } from "../components/UI/dropdown";
-import { ModalAdicionar } from "../components/Modal";
+import { Dropdown } from "../components/UI/Dropdown";
+import { ModalAdicionar } from "../components/Modal/AddModal";
 import { useTaskContext } from "../contexts/taskContext";
 import { Task } from "../utils/types/checklist";
 
@@ -23,13 +23,9 @@ const ChecklistScreen = () => {
   useEffect(() => {
     const filterCheck = () => {
       const today = new Date();
-      
-      const PassEvents = events.filter((item) => {
-        return !item.isCheck && new Date(item.date) < today;
-      });
 
       const todayEvents = events.filter((item) => {
-        return !item.isCheck && new Date(item.date) === today;
+        return !item.isCheck && new Date(item.date) <= today;
       });
       
       const futureEvents = events.filter((item) => {
@@ -38,7 +34,7 @@ const ChecklistScreen = () => {
 
       const checkedEvents = events.filter((item) => item.isCheck);
       
-      setEventPass(PassEvents)
+      // setEventPass(PassEvents)
       setEventToday(todayEvents);
       setEventFuture(futureEvents);
       setEventHistorie(checkedEvents);

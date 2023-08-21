@@ -59,7 +59,7 @@ export const ChecklistItens = (props: ChecklistItensProps) => {
 
               <View className="flex-row items-center gap-1 ">
                 <FontAwesome5 name="calendar-alt" color={"#000"} size={23} />
-                <Text>{moment(date).calendar()}</Text>
+                <Text className="text-amber-800">{moment(date).calendar()}</Text>
               </View>
 
               <View className="absolute w-12 h-12 justify-center items-center bg-black rounded-full bottom-0 right-0 m-2">

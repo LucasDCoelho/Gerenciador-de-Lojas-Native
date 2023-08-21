@@ -12,7 +12,7 @@ interface EditModalProps {
 
 export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
     const { createTask, useStore } = useTaskContext();
-    const { inputValue, setInputValue, setColorValue } = useStore();
+    const { inputValue, setInputValue, setColorValue, setCategory, category } = useStore();
 
     const [openCategoria, setOpenCategoria] = useState(false);
     const [openColor, setOpenColor] = useState(false);
@@ -26,14 +26,16 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
         { label: "Tarefa", value: "#a3e635" },
     ]);
     const [categorias, setCategorias] = useState([
-        { label: "Dinheiro", value: "#facc15" },
-        { label: "Compras", value: "#dc2626" },
-        { label: "Produto", value: "#a3e635" },
+        { label: "Dinheiro", value: "Dinheiro" },
+        { label: "Compras", value: "Compras" },
+        { label: "Produto", value: "Produtos" },
     ]);
 
     useEffect(() => {
         setColorValue(valueColor? valueColor : '#000000');
-    }, [valueColor]);
+        setCategory(valueCategoria? valueCategoria : category)
+        console.log(category)
+    }, [valueColor, valueCategoria]);
 
     if (open) {
         return (

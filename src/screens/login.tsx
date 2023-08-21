@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-import { Input } from "../components/UI/input";
+import { Input } from "../components/UI/Input";
 import { Button } from "../components/UI/Button";
 
 const LoginScreen = () => {
