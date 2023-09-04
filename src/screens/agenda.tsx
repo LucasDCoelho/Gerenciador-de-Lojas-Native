@@ -4,8 +4,7 @@ import { ModalAdicionar } from "../components/Modal/AddModal";
 const AgendaSCreen: React.FC = () => {
   return (
     <>
-    <CalendarEvents/>
-    <ModalAdicionar/>
+      <CalendarEvents/>
     </>
   )
 };

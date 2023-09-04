@@ -34,7 +34,7 @@ export const ModalAdicionar = () => {
                   />
                 </Animated.View>
 
-                <Animated.View entering={SlideInDown.delay(150)}>
+                {/* <Animated.View entering={SlideInDown.delay(150)}>
                   <IconAdicionar
                     colorIcon="white"
                     nameIcon="check"
@@ -42,7 +42,7 @@ export const ModalAdicionar = () => {
                     label="Lembretes"
                     colorButton="bg-green-600"
                   />
-                </Animated.View>
+                </Animated.View> */}
             </View>
           </Pressable>
         )}

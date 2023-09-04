@@ -16,7 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
     return (
         <View className="flex-1 bg-slate-800">
-            <View className="w-full justify-center items-start p-2 bg-rose-900">
+            <View className="w-full justify-center items-start px-2 pt-10 pb-5 bg-rose-900">
                 <View className="w-16 h-16 m-2 items-center justify-center rounded-full border-2 border-white">
                     <Text className="text-white text-3xl">B</Text>
                 </View>
@@ -31,7 +31,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
             <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />
                 <DrawerItem
-                    label={"log out"}
+                    label={"LogOut"}
                     icon={({size, color})=> <Icon name="log-out" size={size} color={color} />}
                     activeBackgroundColor="#881337"
                     inactiveTintColor="#ffffff"
@@ -47,10 +47,12 @@ export const HeaderDrawer = () => {
     return (
         <Pressable
             className="p-4 mr-[38%] flex-row items-center"
-            onPress={() => navigate("lojas")}
+            onPress={() => navigate("shop")}
         >
-            <Ionicons name="chevron-back" size={23} />
-            <Text className="text-md font-extrabold">Loja Parangaba</Text>
+            <Ionicons name="chevron-back" size={23} style={{
+                color: "#FFF"
+            }} />
+            <Text className="text-md font-extrabold text-white">Loja Parangaba</Text>
         </Pressable>
     );
 };
@@ -65,4 +67,5 @@ export const DrawerOptions: DrawerNavigationOptions = {
         backgroundColor: "#881337",
     },
     headerRight: HeaderDrawer,
+
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 
-import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import { TextInput, TouchableOpacity, View, StyleSheet, SafeAreaView } from "react-native";
 import { Button } from "../UI/Button";
 import { useTaskContext } from "../../contexts/taskContext";
 
@@ -32,8 +32,8 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
     ]);
 
     useEffect(() => {
-        setColorValue(valueColor? valueColor : '#000000');
-        setCategory(valueCategoria? valueCategoria : category)
+        setColorValue(valueColor ? valueColor : '#000000');
+        setCategory(valueCategoria ? valueCategoria : category)
         console.log(category)
     }, [valueColor, valueCategoria]);
 
@@ -45,52 +45,63 @@ export const CreateTaskModal = ({ open, setOpen }: EditModalProps) => {
                     onPress={() => setOpen(!open)}
                 />
                 <View className="z-50 absolute w-screen h-auto bottom-0 px-2 py-4 rounded-t-2xl bg-slate-600">
-                    <TextInput
-                        autoFocus
-                        defaultValue={inputValue}
-                        placeholder="nova tarefa"
-                        onChangeText={(e) => setInputValue(e)}
-                        className="w-full border-2 px-4 py-6 rounded-2xl text-white border-white"
-                    />
-                    <View className="flex-row">
-                    <DropDownPicker
-                            open={openCategoria}
-                            value={valueCategoria}
-                            items={categorias}
-                            placeholder="Categorias"
-                            dropDownDirection="TOP"
-                            setOpen={setOpenCategoria}
-                            containerStyle={{
-                                paddingVertical: 5,
-                                marginRight:5,
-                                width: "50%",
-                            }}
-                            setValue={setValueCategoria}
-                            setItems={setCategorias}
+                    <SafeAreaView className="mb-10">
+                        <TextInput
+                            autoFocus
+                            defaultValue={inputValue}
+                            placeholder="Nova Tarefa"
+                            onChangeText={(e) => setInputValue(e)}
+                            placeholderTextColor={"white"}
+                            className="w-full border-2 px-4 py-6 rounded-2xl text-white border-white placeholder:text-white"
+
                         />
-                        <DropDownPicker
-                            open={openColor}
-                            value={valueColor}
-                            addCustomItem
-                            items={cores}
-                            placeholder="Colors"
-                            setOpen={setOpenColor}
-                            setValue={setValueColor}
-                            setItems={setCores}
-                            dropDownDirection="TOP"
-                            containerStyle={{
-                                paddingVertical: 5,
-                                width: "25%",
-                            }}
+                        <View className="flex-row mt-1">
+                            <DropDownPicker
+                                open={openCategoria}
+                                value={valueCategoria}
+                                items={categorias}
+                                placeholder="Categorias"
+                                dropDownDirection="TOP"
+                                setOpen={setOpenCategoria}
+                                containerStyle={{
+                                    paddingVertical: 5,
+                                    marginRight: 5,
+                                    width: "50%",
+                                }}
+                                setValue={setValueCategoria}
+                                setItems={setCategorias}
+                            />
+                            <DropDownPicker
+                                open={openColor}
+                                value={valueColor}
+                                addCustomItem
+                                items={cores}
+                                placeholder="Colors"
+                                setOpen={setOpenColor}
+                                setValue={setValueColor}
+                                setItems={setCores}
+                                dropDownDirection="TOP"
+                                containerStyle={{
+                                    paddingVertical: 5,
+                                    width: "25%",
+                                }}
+                            />
+                        </View>
+                    </SafeAreaView>
+                    {inputValue.length === 0 ? (
+                        <Button
+                            Label="Criar tarefa"
+                            className="m-0 opacity-70 bg-red-900 text-gray-600"
                         />
-                        
-                    </View>
-                    <Button
-                        Label="Criar tarefa"
-                        onPress={createTask}
-                        className="m-0"
-                    />
-                </View>
+                    ) : (
+                        <Button
+                            Label="Criar tarefa"
+                            onPress={createTask}
+                            className="m-0"
+                        />
+                    )}
+
+                </View >
             </>
         );
     } else return null;

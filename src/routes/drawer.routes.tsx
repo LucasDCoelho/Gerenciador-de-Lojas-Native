@@ -5,8 +5,9 @@ import Icon from "@expo/vector-icons/FontAwesome5";
 import { CustomDrawer, DrawerOptions } from "../components/Drawer/customDrawer";
 
 // screens
-import AgendaScreen from "../screens/agenda";
-import ChecklistScreen from "../screens/checklist";
+import AgendaScreen from "../screens/Agenda";
+import ChecklistScreen from "../screens/Checklist";
+import DashboardScreen from "../screens/Dashboard";
 
 export const DrawerNavigate = () => {
   const { Group, Navigator, Screen } = createDrawerNavigator();
@@ -23,20 +24,33 @@ export const DrawerNavigate = () => {
           drawerActiveTintColor: "#ffffff",
         }}>
         <Screen
-          name="agenda"
-          component={AgendaScreen}
+          name="dashboard"
+          component={DashboardScreen}
           options={{
-            drawerLabel: "Pagina Inicial",
+            drawerLabel: "Página Inicial",
             drawerIcon: ({ size, color }) => (
               <Icon name="home" size={size} color={color} />
             ),
+            
+          }}
+        />
+
+        <Screen
+          name="agenda"
+          component={AgendaScreen}
+          options={{
+            drawerLabel: "Agenda",
+            drawerIcon: ({ size, color }) => (
+              <Icon name="calendar" size={size} color={color} />
+            ),
+            
           }}
         />
         <Screen
           name="checklist"
           component={ChecklistScreen}
           options={{
-            drawerLabel: "checklist",
+            drawerLabel: "Checklist",
             drawerIcon: ({ size, color }) => (
               <Icon name="clipboard-list" size={size} color={color} />
             ),

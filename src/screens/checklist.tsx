@@ -10,7 +10,7 @@ import { useTaskContext } from "../contexts/taskContext";
 import { Task } from "../utils/types/checklist";
 
 const ChecklistScreen = () => {
-  const Mes = moment().format("MMMM");
+  const Mes = moment().format("MMMM").toLocaleUpperCase();
   const { useStore } = useTaskContext();
 
   const { events } = useStore();

@@ -4,7 +4,7 @@ export declare global {
             home: undefined;
             dashboard: undefined;
             login: undefined;
-            lojas: undefined;
+            shop: undefined;
             notFound: undefined;
             events: {
                 taskId: string;
